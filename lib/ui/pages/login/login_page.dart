@@ -28,15 +28,18 @@ class LoginPage extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Center(
-                  child: Image.asset('lib/ui/assets/icons/icon_login.png'),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Center(
+                    child: Image.asset('lib/ui/assets/icons/icon_login.png'),
+                  ),
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 16, right: 16, bottom: 40),
+                      const EdgeInsets.only(left: 16, right: 16, bottom: 42),
                   child: Column(
                     children: [
                       AppTextFormField(label: 'E-mail'),
@@ -52,7 +55,8 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding:
+                      const EdgeInsets.only(left: 16, right: 16, bottom: 32),
                   child: Column(
                     children: [
                       AppButton(
