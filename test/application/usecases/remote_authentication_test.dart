@@ -28,6 +28,12 @@ void main() {
   });
 
   test('should call HttpClient with correct values', () async {
+    when(httpClient.request(
+            url: anyNamed('url'),
+            method: anyNamed('method'),
+            body: anyNamed('body')))
+        .thenAnswer((_) async => {"token": "token"});
+
     await sut.auth(params);
 
     verify(
@@ -85,5 +91,22 @@ void main() {
     final future = sut.auth(params);
 
     expect(future, throwsA(DomainError.invalidCredentials));
+  });
+
+  test('should return an Account if HttpClient returns 200', () async {
+    final token = faker.guid.guid();
+    final apiResult = {"token": token};
+
+    when(httpClient.request(
+            url: anyNamed('url'),
+            method: anyNamed('method'),
+            body: anyNamed('body')))
+        .thenAnswer(
+      (_) async => apiResult,
+    );
+
+    final account = await sut.auth(params);
+
+    expect(account.token, token);
   });
 }

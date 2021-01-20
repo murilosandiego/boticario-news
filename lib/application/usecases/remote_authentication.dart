@@ -1,4 +1,5 @@
 import 'package:mesa_news/application/http/http_error.dart';
+import 'package:mesa_news/application/models/account_model.dart';
 import 'package:mesa_news/domain/entities/account.dart';
 import 'package:mesa_news/domain/errors/domain_error.dart';
 import 'package:mesa_news/domain/usecases/authentication.dart';
@@ -20,7 +21,9 @@ class RemoteAuthentication implements Authetication {
     final body = RemoteAuthenticationParams.fromDomain(params).toJson();
 
     try {
-      await httpClient.request(url: url, method: 'post', body: body);
+      final httpResponse =
+          await httpClient.request(url: url, method: 'post', body: body);
+      return AccountModel.fromJson(httpResponse);
     } on HttpError catch (error) {
       throw error == HttpError.unauthorized
           ? DomainError.invalidCredentials
