@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mesa_news/ui/components/app_theme.dart';
-import 'package:mesa_news/ui/pages/splash/splash_page.dart';
+import 'main/pages/app_pages.dart';
+import 'ui/components/app_theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'MESA News',
       theme: makeAppTheme(),
-      home: SplashPage(),
+      getPages: AppPages.pages,
+      initialRoute: AppPages.splash,
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mesa_news/ui/components/app_button.dart';
-import 'package:mesa_news/ui/components/create_account_button.dart';
-import 'package:mesa_news/ui/pages/login/login_page.dart';
+
+import '../../../../main/pages/app_pages.dart';
+import '../../../components/app_button.dart';
+import '../../../components/create_account_button.dart';
 
 class Buttons extends StatelessWidget {
   @override
@@ -26,7 +27,7 @@ class Buttons extends StatelessWidget {
             textColor: Colors.white,
             outLine: true,
             borderColor: Colors.white,
-            onPressed: () => Get.to(LoginPage()),
+            onPressed: () => Get.toNamed(AppPages.login),
           ),
         ),
         Padding(

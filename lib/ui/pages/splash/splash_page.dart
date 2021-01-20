@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mesa_news/ui/pages/splash/components/buttons.dart';
-import 'package:mesa_news/ui/pages/splash/components/logo.dart';
+import 'components/buttons.dart';
+import 'components/logo.dart';
 
 class SplashPage extends StatelessWidget {
   @override

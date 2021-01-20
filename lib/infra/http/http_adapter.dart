@@ -1,7 +1,7 @@
 import 'dart:convert' as dartConvert;
 
 import 'package:http/http.dart';
-import 'package:mesa_news/application/http/http_error.dart';
+import '../../application/http/http_error.dart';
 import 'package:meta/meta.dart';
 
 import '../../application/http/http_client.dart';
