@@ -1,5 +1,6 @@
-import 'package:mesa_news/domain/entities/account.dart';
 import 'package:meta/meta.dart' show required;
+
+import '../../domain/entities/account.dart';
 
 class AccountModel extends Account {
   final String token;

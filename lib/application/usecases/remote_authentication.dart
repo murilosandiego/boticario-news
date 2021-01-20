@@ -1,11 +1,11 @@
-import 'package:mesa_news/application/http/http_error.dart';
-import 'package:mesa_news/application/models/account_model.dart';
-import 'package:mesa_news/domain/entities/account.dart';
-import 'package:mesa_news/domain/errors/domain_error.dart';
-import 'package:mesa_news/domain/usecases/authentication.dart';
 import 'package:meta/meta.dart' show required;
 
+import '../../domain/entities/account.dart';
+import '../../domain/errors/domain_error.dart';
+import '../../domain/usecases/authentication.dart';
 import '../http/http_client.dart';
+import '../http/http_error.dart';
+import '../models/account_model.dart';
 
 class RemoteAuthentication implements Authetication {
   final HttpClient httpClient;

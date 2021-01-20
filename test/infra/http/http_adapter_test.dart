@@ -1,35 +1,8 @@
-import 'dart:convert';
-
 import 'package:faker/faker.dart';
 import 'package:http/http.dart';
-import 'package:mesa_news/application/http/http_client.dart';
+import 'package:mesa_news/infra/http/http_adapter.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-import 'package:meta/meta.dart' show required;
-
-class HttpAdapter implements HttpClient {
-  final Client client;
-
-  HttpAdapter(this.client);
-
-  Future<Map> request({
-    @required String url,
-    @required String method,
-    Map body,
-  }) async {
-    final headers = {'Content-Type': 'application/json'};
-
-    final jsonBody = body == null ? null : jsonEncode(body);
-
-    final response = await client.post(
-      url,
-      headers: headers,
-      body: jsonBody,
-    );
-
-    return jsonDecode(response.body);
-  }
-}
 
 class ClientMock extends Mock implements Client {}
 
@@ -45,16 +18,15 @@ main() {
   });
 
   group('post', () {
+    PostExpectation mockRequest() => when(
+        client.post(any, body: anyNamed('body'), headers: anyNamed('headers')));
+
+    void mockResponse(int statusCode,
+            {String body = '{"any_key":"any_value"}'}) =>
+        mockRequest().thenAnswer((_) async => Response(body, statusCode));
+
     setUp(() {
-      when(
-        client.post(
-          any,
-          body: anyNamed('body'),
-          headers: anyNamed('headers'),
-        ),
-      ).thenAnswer(
-        (_) async => Response('{"any_key":"any_value"}', 200),
-      );
+      mockResponse(200);
     });
 
     test('Should call post with correct values', () async {
