@@ -10,13 +10,27 @@ ThemeData makeAppTheme() {
   final dividerColor = Colors.grey;
   final textTheme = TextTheme(
       headline1: TextStyle(
-          fontSize: 30, fontWeight: FontWeight.bold, color: primaryColorDark));
+    fontSize: 30,
+    fontWeight: FontWeight.bold,
+    color: primaryColorDark,
+  ));
   final inputDecorationTheme = InputDecorationTheme(
-      enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: primaryColorLight)),
-      focusedBorder:
-          UnderlineInputBorder(borderSide: BorderSide(color: primaryColor)),
-      alignLabelWithHint: true);
+    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+    fillColor: Color(0XFFF0F0F0),
+    filled: true,
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: BorderSide(
+        color: Colors.transparent,
+      ),
+    ),
+    focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Colors.transparent,
+        ),
+        borderRadius: BorderRadius.circular(5)),
+    alignLabelWithHint: true,
+  );
   final buttonTheme = ButtonThemeData(
     colorScheme: ColorScheme.light(primary: primaryColor),
     buttonColor: primaryColor,
