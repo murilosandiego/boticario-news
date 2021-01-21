@@ -18,6 +18,8 @@ ThemeData makeAppTheme() {
     contentPadding: EdgeInsets.symmetric(horizontal: 16),
     fillColor: Color(0XFFF0F0F0),
     filled: true,
+    errorBorder: InputBorder.none,
+    focusedErrorBorder: InputBorder.none,
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
       borderSide: BorderSide(
