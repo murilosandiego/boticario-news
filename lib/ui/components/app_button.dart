@@ -29,6 +29,9 @@ class AppButton extends StatelessWidget {
       height: 48,
       width: double.infinity,
       child: FlatButton(
+        disabledColor: color == null
+            ? Theme.of(context).primaryColor.withOpacity(0.5)
+            : color.withOpacity(0.5),
         color: color ?? Theme.of(context).primaryColor,
         shape: outLine
             ? RoundedRectangleBorder(

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../components/app_button.dart';
 import '../../../components/app_text_form_field.dart';
 import '../login_presenter.dart';
+import '../../../helpers/errors/ui_error.dart';
 
 class FormLogin extends StatelessWidget {
   const FormLogin({
@@ -22,21 +23,31 @@ class FormLogin extends StatelessWidget {
             () => AppTextFormField(
               label: 'E-mail',
               onChanged: presenter.validateEmail,
-              errorText: presenter.emailError,
+              errorText: presenter.emailError != null
+                  ? presenter.emailError.description
+                  : null,
               textInputType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
             ),
           ),
           SizedBox(height: 26),
-          AppTextFormField(
-            label: 'Senha',
-            obscureText: true,
+          Obx(
+            () => AppTextFormField(
+              label: 'Senha',
+              onChanged: presenter.validatePassword,
+              errorText: presenter.passwordError != null
+                  ? presenter.passwordError.description
+                  : null,
+              obscureText: true,
+            ),
           ),
           SizedBox(height: 32),
-          AppButton(
-            text: 'Login',
-            textColor: Colors.white,
-            onPressed: () {},
+          Obx(
+            () => AppButton(
+              text: 'Login',
+              textColor: Colors.white,
+              onPressed: presenter.isFormValid ? () => presenter.auth() : null,
+            ),
           ),
         ],
       ),
