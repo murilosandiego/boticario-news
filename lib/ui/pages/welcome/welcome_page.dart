@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'components/buttons.dart';
 import 'components/logo.dart';
 
-class SplashPage extends StatelessWidget {
+class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

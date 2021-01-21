@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
+import 'package:mesa_news/ui/pages/welcome/welcome_page.dart';
 
 import '../../ui/pages/login/login_page.dart';
-import '../../ui/pages/splash/splash_page.dart';
 import '../bindinds/login_bindind.dart';
 
 abstract class AppPages {
@@ -11,7 +11,7 @@ abstract class AppPages {
   static final pages = [
     GetPage(
       name: splash,
-      page: () => SplashPage(),
+      page: () => WelcomePage(),
     ),
     GetPage(
       name: login,
