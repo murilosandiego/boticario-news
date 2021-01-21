@@ -16,9 +16,9 @@ import 'package:localstorage/localstorage.dart' as LocalStorageLib;
 class LoginBinding implements Bindings {
   @override
   void dependencies() {
+    final storage = LocalStorageLib.LocalStorage('app_local');
     Get.lazyPut<HttpClient>(() => HttpAdapter(Client()));
-    Get.lazyPut<LocalStorage>(() => LocalStorageAdapter(
-        localStorage: LocalStorageLib.LocalStorage('app_local')));
+    Get.lazyPut<LocalStorage>(() => LocalStorageAdapter(localStorage: storage));
     Get.lazyPut<Authetication>(() => RemoteAuthentication(
         httpClient: Get.find(), url: makeApiUrl('v1/client/auth/signin')));
     Get.lazyPut<SaveCurrentAccount>(
