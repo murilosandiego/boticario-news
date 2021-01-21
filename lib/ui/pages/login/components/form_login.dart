@@ -22,7 +22,7 @@ class FormLogin extends StatelessWidget {
           Obx(
             () => AppTextFormField(
               label: 'E-mail',
-              onChanged: presenter.validateEmail,
+              onChanged: presenter.handleEmail,
               errorText: presenter.emailError != null
                   ? presenter.emailError.description
                   : null,
@@ -34,7 +34,7 @@ class FormLogin extends StatelessWidget {
           Obx(
             () => AppTextFormField(
               label: 'Senha',
-              onChanged: presenter.validatePassword,
+              onChanged: presenter.handlePassword,
               errorText: presenter.passwordError != null
                   ? presenter.passwordError.description
                   : null,

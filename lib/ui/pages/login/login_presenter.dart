@@ -17,8 +17,33 @@ class LoginPresenter extends GetxController {
 
   LoginPresenter({@required this.authetication});
 
-  validateEmail(String email) {
+  handleEmail(String email) {
     _email = email;
+    _validateEmail(email);
+  }
+
+  void handlePassword(String password) {
+    _password = password;
+    _validatePassword(password);
+  }
+
+  auth() async {
+    try {
+      final account = await authetication
+          .auth(AuthenticationParams(email: _email, secret: _password));
+      print(account);
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  bool get isFormValid =>
+      _emailError.value == null &&
+      _passwordError.value == null &&
+      _email != null &&
+      _password != null;
+
+  _validateEmail(String email) {
     if (email == null) {
       _emailError.value = null;
       return;
@@ -32,25 +57,8 @@ class LoginPresenter extends GetxController {
     _emailError.value = email?.isEmail == true ? null : UIError.invalidEmail;
   }
 
-  void validatePassword(String password) {
-    _password = password;
+  _validatePassword(String password) {
     _passwordError.value =
         password?.isEmpty == true ? UIError.requiredField : null;
-  }
-
-  bool get isFormValid =>
-      _emailError.value == null &&
-      _passwordError.value == null &&
-      _email != null &&
-      _password != null;
-
-  auth() async {
-    try {
-      final account = await authetication
-          .auth(AuthenticationParams(email: _email, secret: _password));
-      print(account);
-    } catch (error) {
-      print(error);
-    }
   }
 }

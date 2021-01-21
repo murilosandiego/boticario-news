@@ -24,28 +24,28 @@ void main() {
   group('validateEmail', () {
     test('Should emit requiredFieldError if email is empty', () {
       const email = '';
-      sut.validateEmail(email);
+      sut.handleEmail(email);
 
       expect(sut.emailError, UIError.requiredField);
     });
 
     test('Should emit null if email is null', () {
       String email;
-      sut.validateEmail(email);
+      sut.handleEmail(email);
 
       expect(sut.emailError, null);
     });
 
     test('Should emit invalidEmail if email is invalid', () {
       String email = 'asdf';
-      sut.validateEmail(email);
+      sut.handleEmail(email);
 
       expect(sut.emailError, UIError.invalidEmail);
     });
 
     test('Should emit null if validation succeeds', () {
       String email = faker.internet.email();
-      sut.validateEmail(email);
+      sut.handleEmail(email);
 
       expect(sut.emailError, null);
     });
@@ -55,21 +55,21 @@ void main() {
     test('Should emit requiredFieldError if password is empty', () {
       const password = '';
 
-      sut.validatePassword(password);
+      sut.handlePassword(password);
 
       expect(sut.passwordError, UIError.requiredField);
     });
 
     test('Should emit null if password is null', () {
       String password;
-      sut.validatePassword(password);
+      sut.handlePassword(password);
 
       expect(sut.passwordError, null);
     });
 
     test('Should emit null if has password', () {
       String password = faker.internet.password();
-      sut.validatePassword(password);
+      sut.handlePassword(password);
 
       expect(sut.passwordError, null);
     });
@@ -78,14 +78,14 @@ void main() {
   group('validateForm', () {
     test('Should emits false if any field is invalid', () {
       const email = 'asd';
-      sut.validateEmail(email);
+      sut.handleEmail(email);
 
       expect(sut.isFormValid, false);
     });
 
     test('Should emits true if all field is valid', () {
-      sut.validateEmail(email);
-      sut.validatePassword(password);
+      sut.handleEmail(email);
+      sut.handlePassword(password);
 
       expect(sut.isFormValid, true);
     });
@@ -97,8 +97,8 @@ void main() {
         (_) async => AccountModel(token: 'asdf'),
       );
 
-      sut.validateEmail(email);
-      sut.validatePassword(password);
+      sut.handleEmail(email);
+      sut.handlePassword(password);
 
       await sut.auth();
 
