@@ -86,6 +86,8 @@ class LoginPresenter extends GetxController {
 
   void _handleMainError() {
     _mainErrorWorker = ever<UIError>(_mainError, (error) {
+      if (error == null) return;
+
       AppSnackbar.showError(message: error.description);
     });
   }
