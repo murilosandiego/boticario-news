@@ -1,6 +1,9 @@
 import 'package:faker/faker.dart';
+import 'package:mesa_news/domain/entities/account.dart';
+import 'package:mesa_news/domain/errors/domain_error.dart';
 
 import 'package:mesa_news/domain/usecases/authentication.dart';
+import 'package:mesa_news/domain/usecases/save_current_account.dart';
 import 'package:mesa_news/ui/helpers/ui_error.dart';
 import 'package:mesa_news/ui/pages/login/login_presenter.dart';
 import 'package:mockito/mockito.dart';
@@ -8,15 +11,22 @@ import 'package:test/test.dart';
 
 class AutheticationMock extends Mock implements Authetication {}
 
+class SaveCurrentAccountSpy extends Mock implements SaveCurrentAccount {}
+
 void main() {
   LoginPresenter sut;
   AutheticationMock authentication;
+  SaveCurrentAccountSpy saveCurrentAccount;
   String email;
   String password;
 
   setUp(() {
     authentication = AutheticationMock();
-    sut = LoginPresenter(authetication: authentication);
+    saveCurrentAccount = SaveCurrentAccountSpy();
+    sut = LoginPresenter(
+      authetication: authentication,
+      saveCurrentAccount: saveCurrentAccount,
+    );
     email = faker.internet.email();
     password = faker.internet.password();
   });
@@ -91,7 +101,7 @@ void main() {
     });
   });
 
-  group('Authentication', () {
+  group('Authentication use case', () {
     test('Should call Authentication with correct values', () async {
       sut.handleEmail(email);
       sut.handlePassword(password);
@@ -101,6 +111,42 @@ void main() {
       verify(authentication
               .auth(AuthenticationParams(email: email, secret: password)))
           .called(1);
+    });
+
+    test('Should emit UIError.unexpected if credencials invalid', () async {
+      when(authentication.auth(any)).thenThrow(DomainError.invalidCredentials);
+
+      await sut.auth();
+
+      expect(sut.mainError, UIError.invalidCredentials);
+    });
+  });
+
+  group('SaveCurrentAccount use case', () {
+    String token;
+    Account account;
+
+    setUp(() {
+      token = faker.guid.guid();
+      account = Account(token: token);
+    });
+
+    test('Should call SaveCurrentAccount with correct values', () async {
+      when(authentication.auth(any)).thenAnswer((_) async => account);
+
+      await sut.auth();
+
+      verify(saveCurrentAccount.save(account)).called(1);
+    });
+
+    test('Should emit UIError.unexpected if SaveCurrentAccount fails',
+        () async {
+      when(authentication.auth(any)).thenAnswer((_) async => account);
+      when(saveCurrentAccount.save(any)).thenThrow(DomainError.unexpected);
+
+      await sut.auth();
+
+      expect(sut.mainError, UIError.unexpected);
     });
   });
 }

@@ -3,12 +3,14 @@ import 'package:meta/meta.dart';
 
 import '../../../domain/errors/domain_error.dart';
 import '../../../domain/usecases/authentication.dart';
+import '../../../domain/usecases/save_current_account.dart';
 import '../../../main/pages/app_pages.dart';
 import '../../helpers/app_snackbar.dart';
 import '../../helpers/ui_error.dart';
 
 class LoginPresenter extends GetxController {
   final Authetication authetication;
+  final SaveCurrentAccount saveCurrentAccount;
 
   final _emailError = Rx<UIError>();
   final _passwordError = Rx<UIError>();
@@ -18,12 +20,14 @@ class LoginPresenter extends GetxController {
 
   UIError get passwordError => _passwordError.value;
   UIError get emailError => _emailError.value;
+  UIError get mainError => _mainError.value;
   bool get isLoading => _isLoading.value;
 
   String _email;
   String _password;
 
-  LoginPresenter({@required this.authetication});
+  LoginPresenter(
+      {@required this.saveCurrentAccount, @required this.authetication});
 
   Worker _navigationWorker;
   Worker _mainErrorWorker;
@@ -51,6 +55,8 @@ class LoginPresenter extends GetxController {
 
       final account = await authetication
           .auth(AuthenticationParams(email: _email, secret: _password));
+
+      await saveCurrentAccount.save(account);
 
       _navigateTo.value = AppPages.splash;
     } on DomainError catch (error) {
