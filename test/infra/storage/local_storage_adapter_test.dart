@@ -20,17 +20,43 @@ main() {
     value = faker.randomGenerator.string(10);
   });
 
-  test('Should call LocalStorage with correct values', () async {
-    await sut.save(key: key, value: value);
+  group('Save method', () {
+    test('Should call LocalStorage with correct values', () async {
+      await sut.save(key: key, value: value);
 
-    verify(localStorage.setItem(key, value));
+      verify(localStorage.setItem(key, value));
+    });
+
+    test('Should throw Exception if LocalStorage fails', () {
+      when(localStorage.setItem(any, any)).thenThrow(Exception());
+
+      final future = sut.save(key: key, value: value);
+
+      expect(future, throwsA(TypeMatcher<Exception>()));
+    });
   });
 
-  test('Should throw Exception if LocalStorage fails', () {
-    when(localStorage.setItem(any, any)).thenThrow(Exception());
+  group('Fetch method', () {
+    test('Should call LocalStorage with correct values', () async {
+      await sut.fetch(key: key);
 
-    final future = sut.save(key: key, value: value);
+      verify(localStorage.getItem(key));
+    });
 
-    expect(future, throwsA(TypeMatcher<Exception>()));
+    test('Should return a value with success', () async {
+      when(localStorage.getItem(any)).thenAnswer((_) async => value);
+
+      final valueResult = await sut.fetch(key: key);
+
+      expect(valueResult, value);
+    });
+
+    test('Should throw Exception if LocalStorage fails', () {
+      when(localStorage.getItem(any)).thenThrow(Exception());
+
+      final future = sut.fetch(key: key);
+
+      expect(future, throwsA(TypeMatcher<Exception>()));
+    });
   });
 }
