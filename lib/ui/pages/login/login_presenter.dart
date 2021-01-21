@@ -53,16 +53,13 @@ class LoginPresenter extends GetxController {
 
       _navigateTo.value = AppPages.splash;
     } on DomainError catch (error) {
+      _mainError.update((_) {});
       if (error == DomainError.invalidCredentials) {
-        _mainError.update((val) {
-          val = UIError.invalidCredentials;
-        });
+        _mainError.value = UIError.invalidCredentials;
         return;
       }
 
-      _mainError.update((val) {
-        val = UIError.unexpected;
-      });
+      _mainError.value = UIError.unexpected;
     } finally {
       _isLoading.value = false;
     }
