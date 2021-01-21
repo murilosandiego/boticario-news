@@ -1,4 +1,5 @@
 import 'package:faker/faker.dart';
+import 'package:mesa_news/application/models/account_model.dart';
 import 'package:mesa_news/domain/usecases/authentication.dart';
 import 'package:mesa_news/ui/helpers/errors/ui_error.dart';
 import 'package:mesa_news/ui/pages/login/login_presenter.dart';
@@ -10,10 +11,14 @@ class AutheticationMock extends Mock implements Authetication {}
 void main() {
   LoginPresenter sut;
   AutheticationMock authentication;
+  String email;
+  String password;
 
   setUp(() {
     authentication = AutheticationMock();
     sut = LoginPresenter(authetication: authentication);
+    email = faker.internet.email();
+    password = faker.internet.password();
   });
 
   group('validateEmail', () {
@@ -79,9 +84,6 @@ void main() {
     });
 
     test('Should emits true if all field is valid', () {
-      final email = faker.internet.email();
-      final password = faker.internet.password();
-
       sut.validateEmail(email);
       sut.validatePassword(password);
 
@@ -91,12 +93,9 @@ void main() {
 
   group('Authentication', () {
     test('Should call Authentication with correct values', () async {
-      when(authentication.auth(AuthenticationParams(
-              email: anyNamed('email'), secret: anyNamed('secret'))))
-          .thenAnswer((_) => null);
-
-      final email = faker.internet.email();
-      final password = faker.internet.password();
+      when(authentication.auth(any)).thenAnswer(
+        (_) async => AccountModel(token: 'asdf'),
+      );
 
       sut.validateEmail(email);
       sut.validatePassword(password);
