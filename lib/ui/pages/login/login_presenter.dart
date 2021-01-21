@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
-import 'package:mesa_news/domain/errors/domain_error.dart';
-import 'package:mesa_news/main/pages/app_pages.dart';
-import 'package:mesa_news/ui/helpers/app_snackbar.dart';
-import 'package:mesa_news/ui/helpers/ui_error.dart';
-import '../../../domain/usecases/authentication.dart';
 import 'package:meta/meta.dart';
+
+import '../../../domain/errors/domain_error.dart';
+import '../../../domain/usecases/authentication.dart';
+import '../../../main/pages/app_pages.dart';
+import '../../helpers/app_snackbar.dart';
+import '../../helpers/ui_error.dart';
 
 class LoginPresenter extends GetxController {
   final Authetication authetication;

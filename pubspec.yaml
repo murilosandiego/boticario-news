@@ -27,6 +27,7 @@ dependencies:
   equatable: ^1.2.5
   get: ^3.24.0
   http: ^0.12.2
+  localstorage: ^3.0.6+9
 
 dev_dependencies:
   flutter_test:

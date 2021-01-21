@@ -3,10 +3,9 @@ import 'package:mesa_news/application/storage/local_storage.dart';
 import 'package:mesa_news/application/usecases/local_save_current_account.dart';
 import 'package:mesa_news/domain/entities/account.dart';
 import 'package:mesa_news/domain/errors/domain_error.dart';
-import 'package:mesa_news/domain/usecases/save_current_account.dart';
+
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-import 'package:meta/meta.dart' show required;
 
 class LocalStorageSpy extends Mock implements LocalStorage {}
 
