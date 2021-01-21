@@ -36,7 +36,6 @@ ThemeData makeAppTheme() {
   final buttonTheme = ButtonThemeData(
     colorScheme: ColorScheme.light(primary: primaryColor),
     buttonColor: primaryColor,
-    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
     textTheme: ButtonTextTheme.primary,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(5),

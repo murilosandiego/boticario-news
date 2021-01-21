@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
+  equatable: ^1.2.5
   get: ^3.24.0
   http: ^0.12.2
 

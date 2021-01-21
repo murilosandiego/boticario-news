@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
-import 'package:mesa_news/ui/helpers/errors/ui_error.dart';
+import 'package:mesa_news/domain/errors/domain_error.dart';
+import 'package:mesa_news/main/pages/app_pages.dart';
+import 'package:mesa_news/ui/helpers/app_snackbar.dart';
+import 'package:mesa_news/ui/helpers/ui_error.dart';
 import '../../../domain/usecases/authentication.dart';
 import 'package:meta/meta.dart';
 
@@ -8,16 +11,30 @@ class LoginPresenter extends GetxController {
 
   final _emailError = Rx<UIError>();
   final _passwordError = Rx<UIError>();
+  final _isLoading = false.obs;
+  final _navigateTo = RxString();
+  final _mainError = Rx<UIError>();
 
   UIError get passwordError => _passwordError.value;
   UIError get emailError => _emailError.value;
+  bool get isLoading => _isLoading.value;
 
   String _email;
   String _password;
 
   LoginPresenter({@required this.authetication});
 
-  handleEmail(String email) {
+  Worker _navigationWorker;
+  Worker _mainErrorWorker;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _handleNavigation();
+    _handleMainError();
+  }
+
+  void handleEmail(String email) {
     _email = email;
     _validateEmail(email);
   }
@@ -29,11 +46,25 @@ class LoginPresenter extends GetxController {
 
   auth() async {
     try {
+      _isLoading.value = true;
+
       final account = await authetication
           .auth(AuthenticationParams(email: _email, secret: _password));
-      print(account);
-    } catch (error) {
-      print(error);
+
+      _navigateTo.value = AppPages.splash;
+    } on DomainError catch (error) {
+      if (error == DomainError.invalidCredentials) {
+        _mainError.update((val) {
+          val = UIError.invalidCredentials;
+        });
+        return;
+      }
+
+      _mainError.update((val) {
+        val = UIError.unexpected;
+      });
+    } finally {
+      _isLoading.value = false;
     }
   }
 
@@ -42,6 +73,18 @@ class LoginPresenter extends GetxController {
       _passwordError.value == null &&
       _email != null &&
       _password != null;
+
+  void _handleNavigation() {
+    _navigationWorker = ever(_navigateTo, (_) {
+      Get.offAndToNamed(AppPages.splash);
+    });
+  }
+
+  void _handleMainError() {
+    _mainErrorWorker = ever<UIError>(_mainError, (error) {
+      AppSnackbar.showError(message: error.description);
+    });
+  }
 
   _validateEmail(String email) {
     if (email == null) {
@@ -60,5 +103,12 @@ class LoginPresenter extends GetxController {
   _validatePassword(String password) {
     _passwordError.value =
         password?.isEmpty == true ? UIError.requiredField : null;
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    _navigationWorker.dispose();
+    _mainErrorWorker.dispose();
   }
 }

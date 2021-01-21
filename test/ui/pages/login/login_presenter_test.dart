@@ -1,7 +1,7 @@
 import 'package:faker/faker.dart';
-import 'package:mesa_news/application/models/account_model.dart';
+
 import 'package:mesa_news/domain/usecases/authentication.dart';
-import 'package:mesa_news/ui/helpers/errors/ui_error.dart';
+import 'package:mesa_news/ui/helpers/ui_error.dart';
 import 'package:mesa_news/ui/pages/login/login_presenter.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';

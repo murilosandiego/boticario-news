@@ -4,13 +4,9 @@ import 'package:get/get.dart';
 import '../../../components/app_button.dart';
 import '../../../components/app_text_form_field.dart';
 import '../login_presenter.dart';
-import '../../../helpers/errors/ui_error.dart';
+import '../../../helpers/ui_error.dart';
 
 class FormLogin extends StatelessWidget {
-  const FormLogin({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final presenter = Get.find<LoginPresenter>();
@@ -44,6 +40,7 @@ class FormLogin extends StatelessWidget {
           SizedBox(height: 32),
           Obx(
             () => AppButton(
+              isLoading: presenter.isLoading,
               text: 'Login',
               textColor: Colors.white,
               onPressed: presenter.isFormValid ? () => presenter.auth() : null,

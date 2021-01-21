@@ -9,6 +9,7 @@ class AppButton extends StatelessWidget {
   final Function onPressed;
   final bool outLine;
   final Color borderColor;
+  final bool isLoading;
 
   const AppButton({
     Key key,
@@ -20,6 +21,7 @@ class AppButton extends StatelessWidget {
     this.textColor,
     this.outLine = false,
     this.borderColor,
+    this.isLoading = false,
   }) : super(key: key);
 
   @override
@@ -41,15 +43,25 @@ class AppButton extends StatelessWidget {
                 ),
               )
             : null,
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(
-            color: textColor ?? Theme.of(context).primaryColor,
-            fontSize: 15,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
+        onPressed: isLoading ? null : onPressed,
+        child: isLoading
+            ? SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    textColor ?? Theme.of(context).primaryColor,
+                  ),
+                ),
+              )
+            : Text(
+                text,
+                style: TextStyle(
+                  color: textColor ?? Theme.of(context).primaryColor,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
       ),
     );
   }
