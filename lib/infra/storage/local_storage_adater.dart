@@ -11,4 +11,10 @@ class LocalStorageAdapter implements LocalStorage {
   Future<void> save({@required key, @required value}) async {
     await localStorage.setItem(key, value);
   }
+
+  @override
+  Future fetch({@required String key}) {
+    // TODO: implement fetch
+    throw UnimplementedError();
+  }
 }
