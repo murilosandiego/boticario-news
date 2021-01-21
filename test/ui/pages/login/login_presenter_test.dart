@@ -93,10 +93,6 @@ void main() {
 
   group('Authentication', () {
     test('Should call Authentication with correct values', () async {
-      when(authentication.auth(any)).thenAnswer(
-        (_) async => AccountModel(token: 'asdf'),
-      );
-
       sut.handleEmail(email);
       sut.handlePassword(password);
 
