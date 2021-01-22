@@ -1,31 +1,10 @@
 import 'package:faker/faker.dart';
-import 'package:get/get.dart';
 import 'package:mesa_news/domain/entities/account.dart';
 import 'package:mesa_news/domain/usecases/load_current_account.dart';
 import 'package:mesa_news/main/pages/app_pages.dart';
+import 'package:mesa_news/ui/pages/splash/splash_presenter.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-import 'package:meta/meta.dart';
-
-class SplashPresenter extends GetxController {
-  final LoadCurrentAccount loadCurrentAccount;
-
-  final _navigateTo = RxString();
-
-  String get navigateTo => _navigateTo.value;
-
-  SplashPresenter({@required this.loadCurrentAccount});
-
-  Future<void> checkAccount() async {
-    try {
-      final account = await loadCurrentAccount.load();
-      _navigateTo.value =
-          account?.token == null ? AppPages.welcome : AppPages.feed;
-    } catch (_) {
-      _navigateTo.value = AppPages.welcome;
-    }
-  }
-}
 
 class LoadCurrentAccountSpy extends Mock implements LoadCurrentAccount {}
 

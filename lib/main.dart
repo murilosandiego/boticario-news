@@ -4,7 +4,7 @@ import 'package:mesa_news/main/bindinds/initial_bindind.dart';
 import 'main/pages/app_pages.dart';
 import 'ui/components/app_theme.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 

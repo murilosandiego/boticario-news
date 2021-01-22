@@ -8,4 +8,7 @@ class Account extends Equatable {
 
   @override
   List get props => [token];
+
+  @override
+  bool get stringify => true;
 }

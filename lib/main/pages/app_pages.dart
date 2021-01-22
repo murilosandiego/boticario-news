@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mesa_news/main/bindinds/splash_binding.dart';
 import 'package:mesa_news/ui/pages/splash/splash_page.dart';
 import 'package:mesa_news/ui/pages/welcome/welcome_page.dart';
 
@@ -15,6 +17,7 @@ abstract class AppPages {
     GetPage(
       name: splash,
       page: () => SplashPage(),
+      binding: SplashBinding(),
     ),
     GetPage(
       name: welcome,
@@ -24,6 +27,12 @@ abstract class AppPages {
       name: login,
       page: () => LoginPage(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: feed,
+      page: () => Container(
+        child: Text('aqui'),
+      ),
     ),
   ];
 }

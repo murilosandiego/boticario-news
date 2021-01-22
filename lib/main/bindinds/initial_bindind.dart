@@ -12,7 +12,8 @@ class InitialBinding implements Bindings {
   void dependencies() {
     final storage = LocalStorageLib.LocalStorage('app_local');
 
-    Get.lazyPut<HttpClient>(() => HttpAdapter(Client()));
-    Get.lazyPut<LocalStorage>(() => LocalStorageAdapter(localStorage: storage));
+    Get.put<HttpClient>(HttpAdapter(Client()), permanent: true);
+    Get.put<LocalStorage>(LocalStorageAdapter(localStorage: storage),
+        permanent: true);
   }
 }
