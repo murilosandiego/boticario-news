@@ -1,8 +1,9 @@
-import 'package:mesa_news/application/storage/local_storage.dart';
-import 'package:mesa_news/domain/entities/account.dart';
-import 'package:mesa_news/domain/errors/domain_error.dart';
-import 'package:mesa_news/domain/usecases/load_current_account.dart';
 import 'package:meta/meta.dart';
+
+import '../../domain/entities/account.dart';
+import '../../domain/errors/domain_error.dart';
+import '../../domain/usecases/load_current_account.dart';
+import '../storage/local_storage.dart';
 
 class LocalLoadCurrentAccount implements LoadCurrentAccount {
   final LocalStorage localStorage;

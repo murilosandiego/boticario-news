@@ -1,6 +1,7 @@
 import 'package:localstorage/localstorage.dart' as LocalStorageLib;
-import '../../application/storage/local_storage.dart';
 import 'package:meta/meta.dart' show required;
+
+import '../../application/storage/local_storage.dart';
 
 class LocalStorageAdapter implements LocalStorage {
   final LocalStorageLib.LocalStorage localStorage;

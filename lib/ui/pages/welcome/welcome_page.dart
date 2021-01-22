@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mesa_news/ui/components/logo_widget.dart';
 
+import '../../components/logo_widget.dart';
 import 'components/buttons.dart';
 
 class WelcomePage extends StatelessWidget {
