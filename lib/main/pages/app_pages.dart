@@ -9,6 +9,7 @@ abstract class AppPages {
   static const splash = '/';
   static const welcome = '/welcome';
   static const login = '/login';
+  static const feed = '/feed';
 
   static final pages = [
     GetPage(
