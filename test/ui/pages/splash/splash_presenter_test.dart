@@ -1,8 +1,8 @@
 import 'package:faker/faker.dart';
-import 'package:mesa_news/domain/entities/account.dart';
-import 'package:mesa_news/domain/usecases/load_current_account.dart';
-import 'package:mesa_news/main/pages/app_pages.dart';
-import 'package:mesa_news/ui/pages/splash/splash_presenter.dart';
+import 'package:boticario_news/domain/entities/account.dart';
+import 'package:boticario_news/domain/usecases/load_current_account.dart';
+import 'package:boticario_news/main/pages/app_pages.dart';
+import 'package:boticario_news/ui/pages/splash/splash_presenter.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

@@ -1,9 +1,9 @@
 import 'package:faker/faker.dart';
-import 'package:mesa_news/application/http/http_client.dart';
-import 'package:mesa_news/application/http/http_error.dart';
-import 'package:mesa_news/application/usecases/remote_authentication.dart';
-import 'package:mesa_news/domain/errors/domain_error.dart';
-import 'package:mesa_news/domain/usecases/authentication.dart';
+import 'package:boticario_news/application/http/http_client.dart';
+import 'package:boticario_news/application/http/http_error.dart';
+import 'package:boticario_news/application/usecases/remote_authentication.dart';
+import 'package:boticario_news/domain/errors/domain_error.dart';
+import 'package:boticario_news/domain/usecases/authentication.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

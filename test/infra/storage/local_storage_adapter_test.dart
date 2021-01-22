@@ -1,5 +1,5 @@
 import 'package:faker/faker.dart';
-import 'package:mesa_news/infra/storage/local_storage_adater.dart';
+import 'package:boticario_news/infra/storage/local_storage_adater.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:localstorage/localstorage.dart' as LocalStorageLib;

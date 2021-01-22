@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialBinding: InitialBinding(),
-      title: 'MESA News',
+      title: 'Boticário News',
       theme: makeAppTheme(),
       getPages: AppPages.pages,
       initialRoute: AppPages.splash,

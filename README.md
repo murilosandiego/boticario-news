@@ -1,4 +1,4 @@
-# mesa_news
+# boticario_news
 
 A new Flutter project.
 

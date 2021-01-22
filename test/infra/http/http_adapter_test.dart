@@ -1,7 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:http/http.dart';
-import 'package:mesa_news/application/http/http_error.dart';
-import 'package:mesa_news/infra/http/http_adapter.dart';
+import 'package:boticario_news/application/http/http_error.dart';
+import 'package:boticario_news/infra/http/http_adapter.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
