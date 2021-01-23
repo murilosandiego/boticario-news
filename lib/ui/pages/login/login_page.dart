@@ -28,10 +28,11 @@ class LoginPage extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.max,
               children: [
-                IconHeader(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 32),
+                  child: IconHeader(),
+                ),
                 FormLogin(),
               ],
             ),
