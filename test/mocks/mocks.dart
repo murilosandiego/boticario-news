@@ -1,3 +1,8 @@
+import 'package:boticario_news/domain/entities/message_entity.dart';
+import 'package:boticario_news/domain/entities/news_entity.dart';
+import 'package:boticario_news/domain/entities/user_entity.dart';
+import 'package:faker/faker.dart';
+
 const apiResponseNewsBoticario = """
 {
    "news":[
@@ -24,3 +29,26 @@ const apiResponseNewsBoticario = """
    ]
 }
 """;
+
+List<NewsEntity> newsList = [
+  NewsEntity(
+    message: MessageEntity(
+      content: faker.lorem.sentence(),
+      createdAt: DateTime(2020, 02, 20),
+    ),
+    user: UserEntity(
+      name: faker.person.name(),
+      profilePicture: faker.internet.httpsUrl(),
+    ),
+  ),
+  NewsEntity(
+    message: MessageEntity(
+      content: faker.lorem.sentence(),
+      createdAt: DateTime(2018, 08, 14),
+    ),
+    user: UserEntity(
+      name: faker.person.name(),
+      profilePicture: faker.internet.httpsUrl(),
+    ),
+  ),
+];

@@ -1,4 +1,4 @@
-import 'package:boticario_news/domain/usecases/load_posts.dart';
+import 'package:boticario_news/domain/usecases/load_news.dart';
 import 'package:meta/meta.dart' show required;
 
 import '../../domain/entities/news_entity.dart';
