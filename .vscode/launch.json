@@ -10,7 +10,6 @@
       "request": "launch",
       "program": "./test/"
     },
-
     {
       "name": "boticario_news",
       "request": "launch",

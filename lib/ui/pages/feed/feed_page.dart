@@ -1,3 +1,5 @@
+import 'package:boticario_news/ui/components/reload_screen.dart';
+
 import 'feed_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,6 +28,10 @@ class FeedPage extends StatelessWidget {
       ),
       body: Obx(
         () {
+          if (presenter.errorMessage.isNotEmpty) {
+            return ReloadScreen(
+                error: presenter.errorMessage, reload: presenter.load);
+          }
           return presenter.isLoading
               ? Center(
                   child: CircularProgressIndicator(),
