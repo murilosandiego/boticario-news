@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'main/bindinds/initial_bindind.dart';
 import 'main/pages/app_pages.dart';
 import 'ui/components/app_theme.dart';

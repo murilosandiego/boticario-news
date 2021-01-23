@@ -1,10 +1,8 @@
 import 'dart:ui';
 
-import 'package:boticario_news/ui/components/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'components/facebook_login_button.dart';
 import 'components/form_login.dart';
 import 'components/icon_header.dart';
 

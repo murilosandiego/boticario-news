@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../../main/pages/app_pages.dart';
 import '../../../components/app_button.dart';
-import '../../../components/create_account_button.dart';
 
 class Buttons extends StatelessWidget {
   @override

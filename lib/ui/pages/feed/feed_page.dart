@@ -1,7 +1,8 @@
-import 'package:boticario_news/main/pages/app_pages.dart';
-import 'package:boticario_news/ui/pages/feed/components/post_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../main/pages/app_pages.dart';
+import 'components/post_widget.dart';
 
 class FeedPage extends StatelessWidget {
   @override

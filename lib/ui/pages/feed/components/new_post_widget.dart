@@ -1,5 +1,6 @@
-import 'package:boticario_news/ui/components/app_text_form_field.dart';
 import 'package:flutter/material.dart';
+
+import '../../../components/app_text_form_field.dart';
 
 class NewPostWidget extends StatelessWidget {
   @override

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import '../../application/usecases/local_load_current_account.dart';
 import '../../domain/usecases/load_current_account.dart';
 import '../../ui/pages/splash/splash_presenter.dart';

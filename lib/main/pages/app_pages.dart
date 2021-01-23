@@ -1,8 +1,8 @@
-import 'package:boticario_news/ui/pages/feed/feed_page.dart';
-import 'package:boticario_news/ui/pages/new_post/new_post_page.dart';
 import 'package:get/get.dart';
 
+import '../../ui/pages/feed/feed_page.dart';
 import '../../ui/pages/login/login_page.dart';
+import '../../ui/pages/new_post/new_post_page.dart';
 import '../../ui/pages/splash/splash_page.dart';
 import '../../ui/pages/welcome/welcome_page.dart';
 import '../bindinds/login_bindind.dart';
