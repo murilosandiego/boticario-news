@@ -1,53 +1,11 @@
 import 'package:boticario_news/domain/usecases/load_news.dart';
-import 'package:equatable/equatable.dart';
+import 'package:boticario_news/ui/pages/feed/feed_presenter.dart';
+import 'package:boticario_news/ui/pages/feed/news_viewmodel.dart';
 
-import 'package:get/state_manager.dart';
-import 'package:intl/intl.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-import 'package:meta/meta.dart';
 
 import '../../../mocks/mocks.dart';
-
-class FeedPresenter {
-  final LoadNews loadNews;
-
-  final _news = Rx<List<NewsViewModel>>();
-
-  List<NewsViewModel> get news => _news.value;
-
-  FeedPresenter({@required this.loadNews});
-
-  load() async {
-    final newsEntity = await loadNews.load();
-    final resultMap = newsEntity
-        .map(
-          (news) => NewsViewModel(
-            message: news.message.content,
-            date: DateFormat('dd/MM/yyyy').format(news.message.createdAt),
-            user: news.user.name,
-          ),
-        )
-        .toList();
-
-    _news.value = resultMap;
-  }
-}
-
-class NewsViewModel extends Equatable {
-  final String message;
-  final String date;
-  final String user;
-
-  NewsViewModel(
-      {@required this.message, @required this.date, @required this.user});
-
-  @override
-  List get props => [message, date, user];
-
-  @override
-  bool get stringify => true;
-}
 
 class LoadNewsSpy extends Mock implements LoadNews {}
 
