@@ -40,7 +40,7 @@ void main() {
       httpClient.request(
         url: url,
         method: 'post',
-        body: {'email': params.email, 'password': params.secret},
+        body: {'identifier': params.email, 'password': params.secret},
       ),
     );
   });
@@ -95,7 +95,7 @@ void main() {
 
   test('should return an Account if HttpClient returns 200', () async {
     final token = faker.guid.guid();
-    final apiResult = {"token": token};
+    final apiResult = {"jwt": token};
 
     when(httpClient.request(
             url: anyNamed('url'),

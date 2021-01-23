@@ -8,6 +8,6 @@ class AccountModel extends Account {
   AccountModel({@required this.token});
 
   factory AccountModel.fromJson(json) => AccountModel(
-        token: json["token"],
+        token: json["jwt"],
       );
 }

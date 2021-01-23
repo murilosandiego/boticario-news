@@ -66,7 +66,7 @@ main() {
 
       final future = sut.request(url: url, method: 'post');
 
-      expect(future, throwsA(HttpError.badRequest));
+      expect(future, throwsA(HttpError.unauthorized));
     });
 
     test('Should return UnauthorizedError if post returns 401', () async {

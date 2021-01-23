@@ -11,7 +11,7 @@ class LoginBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<Authetication>(() => RemoteAuthentication(
-        httpClient: Get.find(), url: makeApiUrl('v1/client/auth/signin')));
+        httpClient: Get.find(), url: makeApiUrl('auth/local')));
     Get.lazyPut<SaveCurrentAccount>(
         () => LocalSaveCurrentAccount(localStorage: Get.find()));
     Get.lazyPut(() => LoginPresenter(
