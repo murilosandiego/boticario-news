@@ -13,26 +13,22 @@ class Buttons extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: AppButton(
-            text: 'Entrar com facebook',
-            textColor: Color(0XFF0075FF),
+            text: 'Fazer login',
+            textColor: Theme.of(context).primaryColor,
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () => Get.toNamed(AppPages.login),
           ),
         ),
         SizedBox(height: 16),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: AppButton(
-            text: 'Entrar com e-mail',
+            text: 'Criar conta',
             textColor: Colors.white,
             outLine: true,
             borderColor: Colors.white,
-            onPressed: () => Get.toNamed(AppPages.login),
+            onPressed: () {},
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 40, bottom: 32),
-          child: CreateAccountButton(),
         ),
       ],
     );

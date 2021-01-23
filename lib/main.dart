@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Boticário News',
       theme: makeAppTheme(),
       getPages: AppPages.pages,
-      initialRoute: AppPages.feed,
+      initialRoute: AppPages.welcome,
     );
   }
 }

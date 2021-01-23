@@ -9,8 +9,9 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Expanded(child: LogoWidget()),
+          LogoWidget(),
           Buttons(),
         ],
       ),
