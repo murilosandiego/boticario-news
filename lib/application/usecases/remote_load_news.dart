@@ -6,11 +6,11 @@ import '../../domain/errors/domain_error.dart';
 import '../http/http_client.dart';
 import '../models/news_model.dart';
 
-class RemoteLoadNewsBoticario implements LoadPosts {
+class RemoteLoadNews implements LoadNews {
   final HttpClient httpClient;
   final String url;
 
-  RemoteLoadNewsBoticario({@required this.httpClient, @required this.url});
+  RemoteLoadNews({@required this.httpClient, @required this.url});
 
   Future<List<NewsEntity>> load() async {
     try {

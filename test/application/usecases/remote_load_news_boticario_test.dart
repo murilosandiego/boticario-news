@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:boticario_news/application/http/http_client.dart';
 import 'package:boticario_news/application/http/http_error.dart';
-import 'package:boticario_news/application/usecases/remote_load_news_boticario.dart';
+import 'package:boticario_news/application/usecases/remote_load_news.dart';
 import 'package:boticario_news/domain/entities/news_entity.dart';
 import 'package:boticario_news/domain/errors/domain_error.dart';
 import 'package:faker/faker.dart';
@@ -14,7 +14,7 @@ import '../../mocks/mocks.dart';
 class HttpClientMock extends Mock implements HttpClient {}
 
 void main() {
-  RemoteLoadNewsBoticario sut;
+  RemoteLoadNews sut;
   HttpClientMock httpClient;
   String url;
 
@@ -22,7 +22,7 @@ void main() {
     httpClient = HttpClientMock();
     url = faker.internet.httpUrl();
 
-    sut = RemoteLoadNewsBoticario(
+    sut = RemoteLoadNews(
       httpClient: httpClient,
       url: url,
     );
