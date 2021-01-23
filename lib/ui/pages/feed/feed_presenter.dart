@@ -6,7 +6,7 @@ import 'package:meta/meta.dart' show required;
 
 import '../../../domain/usecases/load_news.dart';
 import '../../helpers/ui_error.dart';
-import 'news_viewmodel.dart';
+import 'post_viewmodel.dart';
 
 class FeedPresenter extends GetxController {
   final LoadNews loadNews;

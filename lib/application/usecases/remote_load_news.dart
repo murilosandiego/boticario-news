@@ -1,10 +1,10 @@
 import 'package:meta/meta.dart' show required;
 
-import '../../domain/entities/news_entity.dart';
+import '../../domain/entities/post_entity.dart';
 import '../../domain/errors/domain_error.dart';
 import '../../domain/usecases/load_news.dart';
 import '../http/http_client.dart';
-import '../models/news_model.dart';
+import '../models/post_model.dart';
 
 class RemoteLoadNews implements LoadNews {
   final HttpClient httpClient;
@@ -12,11 +12,11 @@ class RemoteLoadNews implements LoadNews {
 
   RemoteLoadNews({@required this.httpClient, @required this.url});
 
-  Future<List<NewsEntity>> load() async {
+  Future<List<PostEntity>> load() async {
     try {
       final response = await httpClient.request(url: url, method: 'get');
       return (response['news'] as List)
-          .map((json) => NewsModel.fromJson(json))
+          .map((json) => PostModel.fromJson(json))
           .toList()
             ..sort(
                 (a, b) => b.message.createdAt.compareTo(a.message.createdAt));

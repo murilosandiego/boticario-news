@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../news_viewmodel.dart';
+import '../post_viewmodel.dart';
 
 class PostWidget extends StatelessWidget {
   final NewsViewModel news;

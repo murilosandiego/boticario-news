@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'message_entity.dart';
 import 'user_entity.dart';
 
-class NewsEntity extends Equatable {
-  NewsEntity({
+class PostEntity extends Equatable {
+  PostEntity({
     this.user,
     this.message,
   });

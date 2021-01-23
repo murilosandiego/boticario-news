@@ -1,5 +1,5 @@
-import '../entities/news_entity.dart';
+import '../entities/post_entity.dart';
 
 abstract class LoadNews {
-  Future<List<NewsEntity>> load();
+  Future<List<PostEntity>> load();
 }

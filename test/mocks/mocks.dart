@@ -1,5 +1,5 @@
 import 'package:boticario_news/domain/entities/message_entity.dart';
-import 'package:boticario_news/domain/entities/news_entity.dart';
+import 'package:boticario_news/domain/entities/post_entity.dart';
 import 'package:boticario_news/domain/entities/user_entity.dart';
 import 'package:faker/faker.dart';
 
@@ -30,8 +30,8 @@ const apiResponseNewsBoticario = """
 }
 """;
 
-List<NewsEntity> newsList = [
-  NewsEntity(
+List<PostEntity> newsList = [
+  PostEntity(
     message: MessageEntity(
       content: faker.lorem.sentence(),
       createdAt: DateTime(2020, 02, 20),
@@ -41,7 +41,7 @@ List<NewsEntity> newsList = [
       profilePicture: faker.internet.httpsUrl(),
     ),
   ),
-  NewsEntity(
+  PostEntity(
     message: MessageEntity(
       content: faker.lorem.sentence(),
       createdAt: DateTime(2018, 08, 14),

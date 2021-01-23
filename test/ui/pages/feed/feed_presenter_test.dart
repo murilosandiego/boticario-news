@@ -2,7 +2,7 @@ import 'package:boticario_news/domain/errors/domain_error.dart';
 import 'package:boticario_news/domain/usecases/load_news.dart';
 import 'package:boticario_news/ui/helpers/ui_error.dart';
 import 'package:boticario_news/ui/pages/feed/feed_presenter.dart';
-import 'package:boticario_news/ui/pages/feed/news_viewmodel.dart';
+import 'package:boticario_news/ui/pages/feed/post_viewmodel.dart';
 
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';

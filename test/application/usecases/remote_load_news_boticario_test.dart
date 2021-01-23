@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:boticario_news/application/http/http_client.dart';
 import 'package:boticario_news/application/http/http_error.dart';
 import 'package:boticario_news/application/usecases/remote_load_news.dart';
-import 'package:boticario_news/domain/entities/news_entity.dart';
+import 'package:boticario_news/domain/entities/post_entity.dart';
 import 'package:boticario_news/domain/errors/domain_error.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
@@ -56,7 +56,7 @@ void main() {
 
     final news = await sut.load();
 
-    expect(news, isA<List<NewsEntity>>());
+    expect(news, isA<List<PostEntity>>());
     expect(news[0].user.name, equals('O Boticário'));
   });
 

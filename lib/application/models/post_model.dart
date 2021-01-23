@@ -1,9 +1,9 @@
-import '../../domain/entities/news_entity.dart';
+import '../../domain/entities/post_entity.dart';
 import 'message_model.dart';
 import 'user_model.dart';
 
-class NewsModel extends NewsEntity {
-  NewsModel({
+class PostModel extends PostEntity {
+  PostModel({
     this.user,
     this.message,
   });
@@ -11,7 +11,7 @@ class NewsModel extends NewsEntity {
   final UserModel user;
   final MessageModel message;
 
-  factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
+  factory PostModel.fromJson(Map<String, dynamic> json) => PostModel(
         user: UserModel.fromJson(json["user"]),
         message: MessageModel.fromJson(json["message"]),
       );
