@@ -1,5 +1,5 @@
 import 'package:faker/faker.dart';
-import 'package:boticario_news/domain/entities/account.dart';
+import 'package:boticario_news/domain/entities/account_entity.dart';
 import 'package:boticario_news/domain/usecases/load_current_account.dart';
 import 'package:boticario_news/main/pages/app_pages.dart';
 import 'package:boticario_news/ui/pages/splash/splash_presenter.dart';
@@ -25,7 +25,7 @@ void main() {
 
   test('Should go to FeedPage if has token', () async {
     when(loadCurrentAccount.load())
-        .thenAnswer((_) async => Account(token: faker.guid.guid()));
+        .thenAnswer((_) async => AccountEntity(token: faker.guid.guid()));
 
     await sut.checkAccount();
 
@@ -34,7 +34,7 @@ void main() {
 
   test('Should go to WelcomePage if not token', () async {
     when(loadCurrentAccount.load())
-        .thenAnswer((_) async => Account(token: null));
+        .thenAnswer((_) async => AccountEntity(token: null));
 
     await sut.checkAccount();
 

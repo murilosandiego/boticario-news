@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart' show required;
 
-import '../entities/account.dart';
+import '../entities/account_entity.dart';
 
 abstract class Authetication {
-  Future<Account> auth(AuthenticationParams params);
+  Future<AccountEntity> auth(AuthenticationParams params);
 }
 
 class AuthenticationParams extends Equatable {

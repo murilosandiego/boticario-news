@@ -1,7 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:boticario_news/application/storage/local_storage.dart';
 import 'package:boticario_news/application/usecases/local_load_current_account.dart';
-import 'package:boticario_news/domain/entities/account.dart';
+import 'package:boticario_news/domain/entities/account_entity.dart';
 import 'package:boticario_news/domain/errors/domain_error.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -31,7 +31,7 @@ void main() {
 
     final account = await sut.load();
 
-    expect(account, Account(token: token));
+    expect(account, AccountEntity(token: token));
   });
 
   test('Shoud throw DomainError.unexpected if LocalStorage throws', () {

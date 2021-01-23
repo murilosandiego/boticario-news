@@ -1,5 +1,5 @@
 import 'package:faker/faker.dart';
-import 'package:boticario_news/domain/entities/account.dart';
+import 'package:boticario_news/domain/entities/account_entity.dart';
 import 'package:boticario_news/domain/errors/domain_error.dart';
 
 import 'package:boticario_news/domain/usecases/authentication.dart';
@@ -124,11 +124,11 @@ void main() {
 
   group('SaveCurrentAccount use case', () {
     String token;
-    Account account;
+    AccountEntity account;
 
     setUp(() {
       token = faker.guid.guid();
-      account = Account(token: token);
+      account = AccountEntity(token: token);
     });
 
     test('Should call SaveCurrentAccount with correct values', () async {

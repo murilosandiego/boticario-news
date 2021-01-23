@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart' show required;
 
-import '../../domain/entities/account.dart';
+import '../../domain/entities/account_entity.dart';
 import '../../domain/errors/domain_error.dart';
 import '../../domain/usecases/authentication.dart';
 import '../http/http_client.dart';
@@ -17,7 +17,7 @@ class RemoteAuthentication implements Authetication {
   });
 
   @override
-  Future<Account> auth(AuthenticationParams params) async {
+  Future<AccountEntity> auth(AuthenticationParams params) async {
     final body = RemoteAuthenticationParams.fromDomain(params).toJson();
 
     try {
