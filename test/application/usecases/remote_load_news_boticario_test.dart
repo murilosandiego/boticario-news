@@ -2,35 +2,16 @@ import 'dart:convert';
 
 import 'package:boticario_news/application/http/http_client.dart';
 import 'package:boticario_news/application/http/http_error.dart';
-import 'package:boticario_news/application/models/news_model.dart';
+import 'package:boticario_news/application/usecases/remote_load_news_boticario.dart';
 import 'package:boticario_news/domain/entities/news_entity.dart';
 import 'package:boticario_news/domain/errors/domain_error.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-import 'package:meta/meta.dart';
 
 import '../../mocks/mocks.dart';
 
 class HttpClientMock extends Mock implements HttpClient {}
-
-class RemoteLoadNewsBoticario {
-  final HttpClient httpClient;
-  final String url;
-
-  RemoteLoadNewsBoticario({@required this.httpClient, @required this.url});
-
-  Future<List<NewsEntity>> load() async {
-    try {
-      final response = await httpClient.request(url: url, method: 'get');
-      return (response['news'] as List)
-          .map((json) => NewsModel.fromJson(json))
-          .toList();
-    } catch (_) {
-      throw DomainError.unexpected;
-    }
-  }
-}
 
 void main() {
   RemoteLoadNewsBoticario sut;
