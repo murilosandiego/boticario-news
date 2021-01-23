@@ -18,10 +18,20 @@ ThemeData makeAppTheme() {
     contentPadding: EdgeInsets.symmetric(horizontal: 16),
     fillColor: Color(0XFFF0F0F0),
     filled: true,
-    errorBorder: InputBorder.none,
-    focusedErrorBorder: InputBorder.none,
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(25),
+      borderSide: BorderSide(
+        color: Colors.transparent,
+      ),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(25),
+      borderSide: BorderSide(
+        color: Colors.transparent,
+      ),
+    ),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: BorderRadius.circular(25),
       borderSide: BorderSide(
         color: Colors.transparent,
       ),
@@ -30,7 +40,7 @@ ThemeData makeAppTheme() {
         borderSide: BorderSide(
           color: Colors.transparent,
         ),
-        borderRadius: BorderRadius.circular(5)),
+        borderRadius: BorderRadius.circular(25)),
     alignLabelWithHint: true,
   );
   final buttonTheme = ButtonThemeData(

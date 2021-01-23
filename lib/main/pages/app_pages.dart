@@ -1,5 +1,4 @@
 import 'package:boticario_news/ui/pages/feed/feed_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../ui/pages/login/login_page.dart';

@@ -47,47 +47,28 @@ class AppTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 4),
-          child: Text(
-            label,
-            style: TextStyle(
-              color: Color(
-                0XFF000634,
-              ),
-              fontWeight: FontWeight.w500,
-              fontSize: 12,
-              letterSpacing: 0.41,
-            ),
-          ),
-        ),
-        TextFormField(
-          autofocus: autofocus,
-          textInputAction: textInputAction,
-          inputFormatters: inputFormatters,
-          maxLines: maxLines,
-          controller: controller,
-          initialValue: initialValue,
-          onTap: onTap,
-          onChanged: onChanged,
-          onEditingComplete: onEditingComplete,
-          obscureText: obscureText,
-          keyboardType: textInputType,
-          onSaved: onSaved,
-          autocorrect: autocorrect,
-          validator: validator,
-          decoration: InputDecoration(
-            suffixIcon: suffixIcon,
-            suffix: suffix,
-            hintText: hintText,
-            errorText: errorText,
-            contentPadding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-          ),
-        ),
-      ],
+    return TextFormField(
+      autofocus: autofocus,
+      textInputAction: textInputAction,
+      inputFormatters: inputFormatters,
+      maxLines: maxLines,
+      controller: controller,
+      initialValue: initialValue,
+      onTap: onTap,
+      onChanged: onChanged,
+      onEditingComplete: onEditingComplete,
+      obscureText: obscureText,
+      keyboardType: textInputType,
+      onSaved: onSaved,
+      autocorrect: autocorrect,
+      validator: validator,
+      decoration: InputDecoration(
+        suffixIcon: suffixIcon,
+        suffix: suffix,
+        hintText: label,
+        errorText: errorText,
+        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      ),
     );
   }
 }
