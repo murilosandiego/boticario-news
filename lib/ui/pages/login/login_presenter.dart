@@ -58,7 +58,7 @@ class LoginPresenter extends GetxController {
 
       await saveCurrentAccount.save(account);
 
-      _navigateTo.value = AppPages.welcome;
+      _navigateTo.value = AppPages.feed;
     } on DomainError catch (error) {
       _mainError.update((_) {});
       if (error == DomainError.invalidCredentials) {
@@ -79,8 +79,8 @@ class LoginPresenter extends GetxController {
       _password != null;
 
   void _handleNavigation() {
-    _navigationWorker = ever(_navigateTo, (_) {
-      Get.offAndToNamed(AppPages.welcome);
+    _navigationWorker = ever(_navigateTo, (page) {
+      Get.offAllNamed(page);
     });
   }
 
