@@ -38,7 +38,7 @@ ThemeData makeAppTheme() {
     buttonColor: primaryColor,
     textTheme: ButtonTextTheme.primary,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: BorderRadius.circular(25),
     ),
   );
 

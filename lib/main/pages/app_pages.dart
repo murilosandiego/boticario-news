@@ -1,3 +1,4 @@
+import 'package:boticario_news/ui/pages/feed/feed_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -30,9 +31,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: feed,
-      page: () => Container(
-        child: Text('aqui'),
-      ),
+      page: () => FeedPage(),
     ),
   ];
 }
