@@ -30,6 +30,53 @@ const apiResponseNewsBoticario = """
 }
 """;
 
+const apiResponsePosts = """
+  [
+  {
+    "id": 3,
+    "users_permissions_user": {
+      "id": 2,
+      "username": "juca",
+      "email": "juca@mail.com",
+      "provider": "local",
+      "confirmed": true,
+      "blocked": null,
+      "role": 1,
+      "created_at": "2021-01-23T14:39:07.779Z",
+      "updated_at": "2021-01-23T14:39:07.787Z"
+    },
+    "published_at": "2021-01-23T14:40:12.678Z",
+    "created_at": "2021-01-23T14:40:12.681Z",
+    "updated_at": "2021-01-23T14:40:12.714Z",
+    "message": {
+      "id": 3,
+      "content": "Vai que da"
+    }
+  },
+  {
+    "id": 4,
+    "users_permissions_user": {
+      "id": 2,
+      "username": "juca",
+      "email": "juca@mail.com",
+      "provider": "local",
+      "confirmed": true,
+      "blocked": null,
+      "role": 1,
+      "created_at": "2021-01-23T14:39:07.779Z",
+      "updated_at": "2021-01-23T14:39:07.787Z"
+    },
+    "published_at": "2021-01-23T23:41:46.958Z",
+    "created_at": "2021-01-23T23:41:46.969Z",
+    "updated_at": "2021-01-23T23:41:47.010Z",
+    "message": {
+      "id": 4,
+      "content": "Vai que da isdfj de novo vai mai usdf"
+    }
+  }
+]
+""";
+
 List<PostEntity> newsList = [
   PostEntity(
     message: MessageEntity(
