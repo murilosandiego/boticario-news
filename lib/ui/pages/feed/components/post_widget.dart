@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../news_viewmodel.dart';
+
 class PostWidget extends StatelessWidget {
+  final NewsViewModel news;
+
+  const PostWidget({@required this.news});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,11 +26,11 @@ class PostWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _Header(),
+          _Header(
+            news: news,
+          ),
           SizedBox(height: 10),
-          Text(
-            'Com a união  asdoijsocial de diversas partes do país."',
-          )
+          Text(news.message)
         ],
       ),
     );
@@ -32,9 +38,11 @@ class PostWidget extends StatelessWidget {
 }
 
 class _Header extends StatelessWidget {
+  final NewsViewModel news;
+
   const _Header({
-    Key key,
-  }) : super(key: key);
+    @required this.news,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +51,7 @@ class _Header extends StatelessWidget {
       children: [
         CircleAvatar(
           backgroundImage: NetworkImage(
-              'https://scontent.fmoc1-1.fna.fbcdn.net/v/t1.0-1/p200x200/99157896_334500170863276_9167020949239758848_o.jpg?_nc_cat=105&ccb=2&_nc_sid=7206a8&_nc_ohc=Xtm0Hm1jI24AX9djcx3&_nc_ht=scontent.fmoc1-1.fna&tp=6&oh=3fbc67e7c268a8a829c8b41a6e8afe06&oe=603067CD'),
+              'https://media-exp1.licdn.com/dms/image/C560BAQG4uMrwe88_iw/company-logo_200_200/0/1541427487948?e=2159024400&v=beta&t=LBMdRY6FnajvFN1nw46vFHscfkqRmMzOtpqW-8zqVi4'),
         ),
         Expanded(
           child: Padding(
@@ -52,13 +60,13 @@ class _Header extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Murilo Sandiego',
+                  '${news.user}',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(
-                  '19 de setembro de 2020',
+                  '${news.date}',
                   style: TextStyle(
                     color: Colors.grey,
                   ),

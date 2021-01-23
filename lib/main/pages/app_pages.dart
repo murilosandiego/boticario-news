@@ -1,3 +1,4 @@
+import 'package:boticario_news/main/bindinds/feed_bindind.dart';
 import 'package:get/get.dart';
 
 import '../../ui/pages/feed/feed_page.dart';
@@ -33,6 +34,7 @@ abstract class AppPages {
     GetPage(
       name: feed,
       page: () => FeedPage(),
+      binding: FeedBinding(),
     ),
     GetPage(
       name: newPost,
