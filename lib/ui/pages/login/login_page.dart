@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:boticario_news/ui/components/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,12 +30,11 @@ class LoginPage extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.max,
               children: [
                 IconHeader(),
                 FormLogin(),
-                FacebookLoginButton(),
               ],
             ),
           ),

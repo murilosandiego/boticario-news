@@ -46,6 +46,13 @@ class FormLogin extends StatelessWidget {
               onPressed: presenter.isFormValid ? () => presenter.auth() : null,
             ),
           ),
+          SizedBox(height: 16),
+          AppButton(
+            outLine: true,
+            text: 'Criar conta',
+            color: Colors.white,
+            onPressed: () {},
+          ),
         ],
       ),
     );
