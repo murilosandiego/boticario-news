@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'message_entity.dart';
 import 'user_entity.dart';
 
-class NewsEntity implements Equatable {
+class NewsEntity extends Equatable {
   NewsEntity({
     this.user,
     this.message,

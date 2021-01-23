@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class MessageEntity implements Equatable {
+class MessageEntity extends Equatable {
   MessageEntity({
     this.content,
     this.createdAt,
