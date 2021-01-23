@@ -1,6 +1,7 @@
-import 'package:boticario_news/domain/entities/message_entity.dart';
-import 'package:boticario_news/domain/entities/user_entity.dart';
 import 'package:equatable/equatable.dart';
+
+import 'message_entity.dart';
+import 'user_entity.dart';
 
 class NewsEntity implements Equatable {
   NewsEntity({

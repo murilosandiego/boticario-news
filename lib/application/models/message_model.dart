@@ -1,4 +1,4 @@
-import 'package:boticario_news/domain/entities/message_entity.dart';
+import '../../domain/entities/message_entity.dart';
 
 class MessageModel extends MessageEntity {
   MessageModel({

@@ -1,6 +1,6 @@
-import 'package:boticario_news/application/models/message_model.dart';
-import 'package:boticario_news/application/models/user_model.dart';
-import 'package:boticario_news/domain/entities/news_entity.dart';
+import '../../domain/entities/news_entity.dart';
+import 'message_model.dart';
+import 'user_model.dart';
 
 class NewsModel extends NewsEntity {
   NewsModel({

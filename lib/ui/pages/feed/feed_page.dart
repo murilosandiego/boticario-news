@@ -1,11 +1,10 @@
-import 'package:boticario_news/ui/components/reload_screen.dart';
-
-import 'feed_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../main/pages/app_pages.dart';
+import '../../components/reload_screen.dart';
 import 'components/post_widget.dart';
+import 'feed_presenter.dart';
 
 class FeedPage extends StatelessWidget {
   @override

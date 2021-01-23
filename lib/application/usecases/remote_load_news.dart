@@ -1,8 +1,8 @@
-import 'package:boticario_news/domain/usecases/load_news.dart';
 import 'package:meta/meta.dart' show required;
 
 import '../../domain/entities/news_entity.dart';
 import '../../domain/errors/domain_error.dart';
+import '../../domain/usecases/load_news.dart';
 import '../http/http_client.dart';
 import '../models/news_model.dart';
 

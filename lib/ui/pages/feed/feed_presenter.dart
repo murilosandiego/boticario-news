@@ -1,12 +1,11 @@
 import 'dart:convert' show utf8;
 
-import 'package:boticario_news/ui/helpers/app_snackbar.dart';
-import 'package:boticario_news/ui/helpers/ui_error.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart' show required;
 
 import '../../../domain/usecases/load_news.dart';
+import '../../helpers/ui_error.dart';
 import 'news_viewmodel.dart';
 
 class FeedPresenter extends GetxController {
