@@ -1,5 +1,7 @@
+import 'package:boticario_news/main/pages/app_pages.dart';
 import 'package:boticario_news/ui/pages/feed/components/post_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FeedPage extends StatelessWidget {
   @override
@@ -14,7 +16,7 @@ class FeedPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => Get.toNamed(AppPages.newPost),
         child: Icon(Icons.post_add),
       ),
       body: ListView(

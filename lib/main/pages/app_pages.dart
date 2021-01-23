@@ -1,4 +1,5 @@
 import 'package:boticario_news/ui/pages/feed/feed_page.dart';
+import 'package:boticario_news/ui/pages/new_post/new_post_page.dart';
 import 'package:get/get.dart';
 
 import '../../ui/pages/login/login_page.dart';
@@ -12,6 +13,7 @@ abstract class AppPages {
   static const welcome = '/welcome';
   static const login = '/login';
   static const feed = '/feed';
+  static const newPost = '/newPost';
 
   static final pages = [
     GetPage(
@@ -31,6 +33,11 @@ abstract class AppPages {
     GetPage(
       name: feed,
       page: () => FeedPage(),
+    ),
+    GetPage(
+      name: newPost,
+      page: () => NewPostPage(),
+      transition: Transition.downToUp,
     ),
   ];
 }
