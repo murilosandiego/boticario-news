@@ -18,7 +18,7 @@ void main() {
   });
 
   test('Should call LoadCurrentAccount', () async {
-    await sut.checkAccount();
+    await sut.checkAccount(test: true);
 
     verify(loadCurrentAccount.load()).called(1);
   });
