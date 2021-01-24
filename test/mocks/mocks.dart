@@ -121,3 +121,27 @@ const factoryApiResponse = """
   }
 }
 """;
+
+const factoryNewPostApiResponse = """
+{
+  "id": 4,
+  "users_permissions_user": {
+    "id": 2,
+    "username": "user",
+    "email": "user@mail.com",
+    "provider": "local",
+    "confirmed": true,
+    "blocked": null,
+    "role": 1,
+    "created_at": "2021-01-23T14:39:07.779Z",
+    "updated_at": "2021-01-23T14:39:07.787Z"
+  },
+  "published_at": "2021-01-23T23:41:46.958Z",
+  "created_at": "2021-01-23T23:41:46.969Z",
+  "updated_at": "2021-01-23T23:41:47.010Z",
+  "message": {
+    "id": 4,
+    "content": "message"
+  }
+}
+""";
