@@ -25,6 +25,7 @@ class PostWidget extends StatelessWidget {
         ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _Header(
             news: news,

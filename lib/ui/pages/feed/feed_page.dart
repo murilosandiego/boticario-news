@@ -29,7 +29,9 @@ class FeedPage extends StatelessWidget {
         () {
           if (presenter.errorMessage.isNotEmpty) {
             return ReloadScreen(
-                error: presenter.errorMessage, reload: presenter.load);
+              error: presenter.errorMessage,
+              reload: presenter.load,
+            );
           }
           return presenter.isLoading
               ? Center(
