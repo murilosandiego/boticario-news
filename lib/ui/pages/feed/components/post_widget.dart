@@ -1,7 +1,7 @@
-import 'package:boticario_news/ui/pages/feed/components/botton_sheet.dart';
 import 'package:flutter/material.dart';
 
 import '../post_viewmodel.dart';
+import 'botton_sheet.dart';
 
 class PostWidget extends StatelessWidget {
   final NewsViewModel news;

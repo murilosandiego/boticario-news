@@ -1,4 +1,4 @@
-import 'package:boticario_news/ui/pages/feed/components/modal_post.dart';
+import 'components/modal_post.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

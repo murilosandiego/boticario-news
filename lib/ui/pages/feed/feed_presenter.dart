@@ -7,6 +7,7 @@ import 'package:meta/meta.dart' show required;
 import '../../../domain/entities/post_entity.dart';
 import '../../../domain/usecases/load_news.dart';
 import '../../../domain/usecases/load_posts.dart';
+import '../../../domain/usecases/remove_post.dart';
 import '../../../domain/usecases/save_post.dart';
 import '../../helpers/ui_error.dart';
 import 'post_viewmodel.dart';
@@ -15,6 +16,7 @@ class FeedPresenter extends GetxController {
   final LoadNews loadNews;
   final LoadPosts loadPosts;
   final SavePost savePost;
+  final RemovePost removePost;
 
   final news = RxList<NewsViewModel>();
   final _isLoading = true.obs;
@@ -27,11 +29,11 @@ class FeedPresenter extends GetxController {
 
   String _newPostMessage;
 
-  FeedPresenter({
-    @required this.loadNews,
-    @required this.loadPosts,
-    @required this.savePost,
-  });
+  FeedPresenter(
+      {@required this.loadNews,
+      @required this.loadPosts,
+      @required this.savePost,
+      @required this.removePost});
 
   @override
   onInit() {
@@ -81,6 +83,20 @@ class FeedPresenter extends GetxController {
         news[indexNews] = toViewModel(post);
       }
     } catch (_) {
+      _errorMessage.update((_) {});
+
+      _errorMessage.value = UIError.unexpected.description;
+    } finally {
+      _isLoading.value = false;
+    }
+  }
+
+  remove(int postId) async {
+    try {
+      await removePost.remove(postId: postId);
+
+      news.removeWhere((post) => post.id == postId);
+    } catch (error) {
       _errorMessage.update((_) {});
 
       _errorMessage.value = UIError.unexpected.description;

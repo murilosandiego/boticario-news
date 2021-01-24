@@ -52,12 +52,6 @@ void main() {
     );
   });
 
-  test('should return true if HttpClient returns 200', () async {
-    final response = await sut.remove(postId: postId);
-
-    expect(response, true);
-  });
-
   test('should throw UnexpectedError if HttpClient not return 200', () {
     mockError(HttpError.badRequest);
 

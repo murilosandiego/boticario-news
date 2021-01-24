@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:boticario_news/application/models/account_model.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/entities/account_entity.dart';
 import '../../domain/errors/domain_error.dart';
 import '../../domain/usecases/load_current_account.dart';
+import '../models/account_model.dart';
 import '../storage/local_storage.dart';
 
 class LocalLoadCurrentAccount implements LoadCurrentAccount {

@@ -3,6 +3,7 @@ import 'package:boticario_news/domain/entities/post_entity.dart';
 import 'package:boticario_news/domain/errors/domain_error.dart';
 import 'package:boticario_news/domain/usecases/load_news.dart';
 import 'package:boticario_news/domain/usecases/load_posts.dart';
+import 'package:boticario_news/domain/usecases/remove_post.dart';
 import 'package:boticario_news/domain/usecases/save_post.dart';
 import 'package:boticario_news/ui/helpers/ui_error.dart';
 import 'package:boticario_news/ui/pages/feed/feed_presenter.dart';
@@ -19,11 +20,14 @@ class LoadPostsSpy extends Mock implements LoadPosts {}
 
 class SavePostSpy extends Mock implements SavePost {}
 
+class RemovePostSpy extends Mock implements RemovePost {}
+
 void main() {
   FeedPresenter sut;
   LoadNewsSpy loadNews;
   LoadPostsSpy loadPosts;
   SavePostSpy savePost;
+  RemovePostSpy removePost;
   String message;
   PostEntity postEntity;
 
@@ -46,10 +50,10 @@ void main() {
     postEntity = PostEntity(message: MessageModel(content: message));
 
     sut = FeedPresenter(
-      loadNews: loadNews,
-      loadPosts: loadPosts,
-      savePost: savePost,
-    );
+        loadNews: loadNews,
+        loadPosts: loadPosts,
+        savePost: savePost,
+        removePost: removePost);
   });
 
   test('Should call loadNews on loadData', () async {
@@ -65,6 +69,14 @@ void main() {
 
     verify(loadPosts.load()).called(1);
   });
+
+  test('Should call removePost', () async {
+    final postId = faker.randomGenerator.integer(33);
+
+    await sut.remove(postId);
+
+    verify(removePost.remove(postId: postId)).called(1);
+  }, skip: true);
 
   test('Should call savePost', () async {
     mockSuccessNewPost();

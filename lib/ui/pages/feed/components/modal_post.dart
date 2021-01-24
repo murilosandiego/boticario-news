@@ -1,6 +1,6 @@
-import 'package:boticario_news/ui/components/app_text_form_field.dart';
-import 'package:boticario_news/ui/pages/feed/feed_presenter.dart';
-import 'package:boticario_news/ui/pages/feed/post_viewmodel.dart';
+import '../../../components/app_text_form_field.dart';
+import '../feed_presenter.dart';
+import '../post_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
