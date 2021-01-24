@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../main/pages/app_pages.dart';
+import '../../components/app_text_form_field.dart';
 import '../../components/reload_screen.dart';
 import 'components/post_widget.dart';
 import 'feed_presenter.dart';
@@ -22,7 +22,7 @@ class FeedPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed(AppPages.newPost),
+        onPressed: () => showModalNewPost(context),
         child: Icon(Icons.post_add),
       ),
       body: Obx(
@@ -52,4 +52,20 @@ class FeedPage extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> showModalNewPost(BuildContext context) {
+  return Get.defaultDialog(
+    title: 'Nova publicação',
+    content: AppTextFormField(
+      label: 'O que deseja compartilhar?',
+      maxLines: 5,
+    ),
+    textConfirm: 'Publicar',
+    confirmTextColor: Theme.of(context).backgroundColor,
+    onConfirm: () {
+      print('aqui');
+    },
+    textCancel: 'Cancelar',
+  );
 }
