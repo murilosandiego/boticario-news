@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../helpers/ui_error.dart';
 
-Future<void> showModalNewPost(BuildContext context, {NewsViewModel news}) {
+Future<void> showModalPost(BuildContext context, {NewsViewModel news}) {
   final presenter = Get.find<FeedPresenter>();
 
   return Get.defaultDialog(

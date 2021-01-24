@@ -21,7 +21,7 @@ class FeedPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => showModalNewPost(context),
+        onPressed: () => showModalPost(context),
         child: Icon(Icons.post_add),
       ),
       body: Obx(
