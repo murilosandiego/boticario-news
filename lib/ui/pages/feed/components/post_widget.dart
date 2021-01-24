@@ -13,7 +13,7 @@ class PostWidget extends StatelessWidget {
       margin: EdgeInsets.only(top: 8, bottom: 8),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -68,9 +68,7 @@ class _Header extends StatelessWidget {
                 ),
                 Text(
                   '${news.date}',
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
+                  style: TextStyle(color: Theme.of(context).dividerColor),
                 )
               ],
             ),

@@ -14,11 +14,10 @@ class FeedPresenter extends GetxController {
   final LoadNews loadNews;
   final LoadPosts loadPosts;
 
-  final _news = Rx<List<NewsViewModel>>();
+  final news = RxList<NewsViewModel>();
   final _isLoading = true.obs;
   final _errorMessage = ''.obs;
 
-  List<NewsViewModel> get news => _news.value;
   bool get isLoading => _isLoading.value;
   String get errorMessage => _errorMessage.value;
 
@@ -30,18 +29,19 @@ class FeedPresenter extends GetxController {
   load() async {
     _errorMessage.value = '';
     try {
-      final news = await loadNews.load();
-      final posts = await loadPosts.load();
+      final newsBoticario = await loadNews.load();
+      final postsUsers = await loadPosts.load();
 
-      final result = news;
-      result.addAll(posts);
+      newsBoticario.addAll(postsUsers);
 
-      final sortedResult = result
+      final sortedResult = newsBoticario
         ..sort(
           (a, b) => b.message.createdAt.compareTo(a.message.createdAt),
         );
 
-      _news.value = _toViewModel(sortedResult);
+      final postsViewModel = _toViewModel(sortedResult);
+
+      news.assignAll(postsViewModel);
     } catch (error) {
       _errorMessage.update((_) {});
 

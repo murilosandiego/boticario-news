@@ -42,7 +42,7 @@ class FeedPage extends StatelessWidget {
                     horizontal: 16,
                     vertical: 8,
                   ),
-                  itemCount: presenter.news?.length,
+                  itemCount: presenter.news.length,
                   itemBuilder: (_, index) {
                     final news = presenter.news[index];
                     return PostWidget(news: news);
