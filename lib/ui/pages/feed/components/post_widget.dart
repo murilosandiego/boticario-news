@@ -1,4 +1,6 @@
+import 'package:boticario_news/ui/pages/feed/components/modal_post.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../post_viewmodel.dart';
 
@@ -31,7 +33,7 @@ class PostWidget extends StatelessWidget {
             news: news,
           ),
           SizedBox(height: 10),
-          Text(news.message)
+          Text('${news.message}')
         ],
       ),
     );
@@ -80,11 +82,45 @@ class _Header extends StatelessWidget {
           child: FlatButton(
             textColor: Colors.black54,
             padding: EdgeInsets.zero,
-            onPressed: () {},
+            onPressed: () => getBottomSheet(context: context, news: news),
             child: Icon(Icons.more_vert),
           ),
         )
       ],
     );
   }
+}
+
+Future getBottomSheet({
+  @required BuildContext context,
+  @required NewsViewModel news,
+}) {
+  return Get.bottomSheet(
+    Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      child: Wrap(
+        children: <Widget>[
+          ListTile(
+              title: Text(
+                'Editar ${news.id}',
+                textAlign: TextAlign.center,
+              ),
+              onTap: () => showModalNewPost(context, news: news)),
+          ListTile(
+            title: Text(
+              'Remover',
+              textAlign: TextAlign.center,
+            ),
+            onTap: () {},
+          ),
+        ],
+      ),
+    ),
+  );
 }

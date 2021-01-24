@@ -6,10 +6,12 @@ class PostModel extends PostEntity {
   PostModel({
     this.user,
     this.message,
+    this.id,
   });
 
   final UserModel user;
   final MessageModel message;
+  final int id;
 
   factory PostModel.fromJson(Map<String, dynamic> json) => PostModel(
         user: UserModel.fromJson(json["user"]),
@@ -17,6 +19,7 @@ class PostModel extends PostEntity {
       );
 
   factory PostModel.fromJsonApiPosts(Map<String, dynamic> json) => PostModel(
+        id: json["id"],
         user: json["users_permissions_user"] == null
             ? null
             : UserModel(name: json["users_permissions_user"]["username"]),

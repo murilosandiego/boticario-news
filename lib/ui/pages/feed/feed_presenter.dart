@@ -40,7 +40,6 @@ class FeedPresenter extends GetxController {
   }
 
   load() async {
-    print(' PASSOU AQUII load()');
     _isLoading.value = true;
     _errorMessage.value = '';
     try {
@@ -58,6 +57,7 @@ class FeedPresenter extends GetxController {
 
       news.assignAll(postsViewModel);
     } catch (error) {
+      print(error);
       _errorMessage.update((_) {});
 
       _errorMessage.value = UIError.unexpected.description;
@@ -84,6 +84,7 @@ class FeedPresenter extends GetxController {
     return posts
         .map(
           (news) => NewsViewModel(
+            id: news.id,
             message: utf8.decode(news.message.content.runes.toList()),
             date: DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_BR')
                 .format(news.message.createdAt),
