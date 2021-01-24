@@ -5,12 +5,13 @@ import '../../components/app_text_form_field.dart';
 import '../../components/reload_screen.dart';
 import 'components/post_widget.dart';
 import 'feed_presenter.dart';
+import '../.././helpers/ui_error.dart';
 
 class FeedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final presenter = Get.find<FeedPresenter>();
-    presenter.load();
+    // presenter.load();
 
     return Scaffold(
       backgroundColor: Color(0xFFF0F2F5),
@@ -55,17 +56,31 @@ class FeedPage extends StatelessWidget {
 }
 
 Future<void> showModalNewPost(BuildContext context) {
+  final presenter = Get.find<FeedPresenter>();
+
   return Get.defaultDialog(
     title: 'Nova publicação',
-    content: AppTextFormField(
-      label: 'O que deseja compartilhar?',
-      maxLines: 5,
+    content: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Obx(
+        () => AppTextFormField(
+          label: 'O que deseja compartilhar?',
+          maxLines: 5,
+          onChanged: presenter.handleNewPostMessage,
+          errorText: presenter.errorMessageNewPost == null
+              ? null
+              : presenter.errorMessageNewPost.description,
+        ),
+      ),
     ),
     textConfirm: 'Publicar',
     confirmTextColor: Theme.of(context).backgroundColor,
-    onConfirm: () {
-      print('aqui');
-    },
+    onConfirm: presenter.isFormValid == null
+        ? null
+        : () {
+            Get.back();
+            presenter.save();
+          },
     textCancel: 'Cancelar',
   );
 }

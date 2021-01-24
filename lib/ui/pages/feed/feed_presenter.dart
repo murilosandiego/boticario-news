@@ -1,32 +1,47 @@
 import 'dart:convert' show utf8;
 
-import 'package:boticario_news/domain/entities/post_entity.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart' show required;
 
+import '../../../domain/entities/post_entity.dart';
 import '../../../domain/usecases/load_news.dart';
 import '../../../domain/usecases/load_posts.dart';
+import '../../../domain/usecases/save_post.dart';
 import '../../helpers/ui_error.dart';
 import 'post_viewmodel.dart';
 
 class FeedPresenter extends GetxController {
   final LoadNews loadNews;
   final LoadPosts loadPosts;
+  final SavePost savePost;
 
   final news = RxList<NewsViewModel>();
   final _isLoading = true.obs;
   final _errorMessage = ''.obs;
+  final _errorMessageNewPost = Rx<UIError>();
 
   bool get isLoading => _isLoading.value;
   String get errorMessage => _errorMessage.value;
+  UIError get errorMessageNewPost => _errorMessageNewPost.value;
+
+  String _newPostMessage;
 
   FeedPresenter({
     @required this.loadNews,
     @required this.loadPosts,
+    @required this.savePost,
   });
 
+  @override
+  onInit() {
+    super.onInit();
+    load();
+  }
+
   load() async {
+    print(' PASSOU AQUII load()');
+    _isLoading.value = true;
     _errorMessage.value = '';
     try {
       final newsBoticario = await loadNews.load();
@@ -51,6 +66,20 @@ class FeedPresenter extends GetxController {
     }
   }
 
+  save() async {
+    try {
+      final post = await savePost.save(message: _newPostMessage);
+      news.insert(0, toViewModel(post));
+      _newPostMessage = null;
+    } catch (_) {
+      _errorMessage.update((_) {});
+
+      _errorMessage.value = UIError.unexpected.description;
+    } finally {
+      _isLoading.value = false;
+    }
+  }
+
   List<NewsViewModel> _toViewModel(List<PostEntity> posts) {
     return posts
         .map(
@@ -63,4 +92,31 @@ class FeedPresenter extends GetxController {
         )
         .toList();
   }
+
+  toViewModel(PostEntity post) {
+    return NewsViewModel(
+      message: utf8.decode(post.message.content.runes.toList()),
+      date: DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_BR')
+          .format(post.message.createdAt),
+      user: utf8.decode(post.user.name.runes.toList()),
+    );
+  }
+
+  handleNewPostMessage(String message) async {
+    _newPostMessage = message;
+    _validateNewPostMessage(message);
+  }
+
+  _validateNewPostMessage(String message) {
+    if (message == null || message?.isEmpty == true) {
+      _errorMessageNewPost.value = null;
+      return;
+    }
+
+    _errorMessageNewPost.value =
+        message.length > 280 ? UIError.invalidMessageNewPost : null;
+  }
+
+  bool get isFormValid =>
+      _errorMessageNewPost.value == null && _newPostMessage != null;
 }
