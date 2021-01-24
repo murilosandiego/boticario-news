@@ -47,37 +47,54 @@ void main() {
 
     body = {
       "message": {"content": message},
-      "users_permissions_user": 1
+      "users_permissions_user": {"id": 1}
     };
 
     mockSuccess();
   });
 
-  test('should call HttpClient with correct values', () async {
-    await sut.save(message: message);
+  group('Create Post', () {
+    test('Should call HttpClient with correct values', () async {
+      await sut.save(message: message);
 
-    verify(
-      httpClient.request(
-        url: url,
-        method: 'post',
-        body: body,
-      ),
-    );
+      verify(
+        httpClient.request(
+          url: url,
+          method: 'post',
+          body: body,
+        ),
+      );
+    });
+
+    test('should return an PostEntity if HttpClient returns 200', () async {
+      final post = await sut.save(message: message);
+
+      expect(post, isA<PostEntity>());
+      expect(post.user.name, equals('user'));
+      expect(post.message.content, equals('message'));
+    });
+
+    test('should throw UnexpectedError if HttpClient not return 200', () {
+      mockError(HttpError.badRequest);
+
+      final future = sut.save(message: message);
+
+      expect(future, throwsA(DomainError.unexpected));
+    });
   });
 
-  test('should return an PostEntity if HttpClient returns 200', () async {
-    final post = await sut.save(message: message);
+  group('Update Post', () {
+    test('Should call HttpClient with correct values', () async {
+      final postId = faker.randomGenerator.integer(33);
+      await sut.save(message: message, postId: postId);
 
-    expect(post, isA<PostEntity>());
-    expect(post.user.name, equals('user'));
-    expect(post.message.content, equals('message'));
-  });
-
-  test('should throw UnexpectedError if HttpClient not return 200', () {
-    mockError(HttpError.badRequest);
-
-    final future = sut.save(message: message);
-
-    expect(future, throwsA(DomainError.unexpected));
+      verify(
+        httpClient.request(
+          url: '$url/$postId',
+          method: 'put',
+          body: body,
+        ),
+      );
+    });
   });
 }

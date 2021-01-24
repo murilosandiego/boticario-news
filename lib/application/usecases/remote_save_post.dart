@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 import '../../domain/entities/post_entity.dart';
 import '../../domain/errors/domain_error.dart';
 import '../../domain/usecases/save_post.dart';
@@ -11,14 +13,17 @@ class RemoteSavePost implements SavePost {
   RemoteSavePost({this.httpClient, this.url});
 
   @override
-  Future<PostEntity> save({String message}) async {
+  Future<PostEntity> save({@required String message, int postId}) async {
     final body = {
       "message": {"content": message},
-      "users_permissions_user": 1
+      "users_permissions_user": {"id": 1}
     };
     try {
-      final httpResponse =
-          await httpClient.request(url: url, method: 'post', body: body);
+      final httpResponse = await httpClient.request(
+        url: postId == null ? url : '$url/$postId',
+        method: postId == null ? 'post' : 'put',
+        body: body,
+      );
 
       return PostModel.fromJsonApiPosts(httpResponse);
     } catch (_) {
