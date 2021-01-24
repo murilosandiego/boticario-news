@@ -24,19 +24,26 @@ void main() {
   });
 
   test('Should go to FeedPage if has token', () async {
-    when(loadCurrentAccount.load())
-        .thenAnswer((_) async => AccountEntity(token: faker.guid.guid()));
+    when(loadCurrentAccount.load()).thenAnswer(
+      (_) async => AccountEntity(
+          token: faker.guid.guid(),
+          username: faker.person.name(),
+          id: faker.randomGenerator.integer(2)),
+    );
 
-    await sut.checkAccount();
+    await sut.checkAccount(test: true);
 
     expect(sut.navigateTo, AppPages.feed);
   });
 
   test('Should go to WelcomePage if not token', () async {
-    when(loadCurrentAccount.load())
-        .thenAnswer((_) async => AccountEntity(token: null));
+    when(loadCurrentAccount.load()).thenAnswer((_) async => AccountEntity(
+          token: null,
+          username: null,
+          id: null,
+        ));
 
-    await sut.checkAccount();
+    await sut.checkAccount(test: true);
 
     expect(sut.navigateTo, AppPages.welcome);
   });
@@ -44,7 +51,7 @@ void main() {
   test('Should go to WelcomePage if throws', () async {
     when(loadCurrentAccount.load()).thenThrow(Exception());
 
-    await sut.checkAccount();
+    await sut.checkAccount(test: true);
 
     expect(sut.navigateTo, AppPages.welcome);
   });

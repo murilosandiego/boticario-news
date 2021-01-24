@@ -99,3 +99,25 @@ List<PostEntity> newsList = [
     ),
   ),
 ];
+
+const factoryApiResponse = """
+{
+  "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+  "user": {
+    "id": 2,
+    "username": "juca",
+    "email": "juca@mail.com",
+    "provider": "local",
+    "confirmed": true,
+    "blocked": null,
+    "role": {
+      "id": 1,
+      "name": "Authenticated",
+      "description": "Default role given to authenticated user.",
+      "type": "authenticated"
+    },
+    "created_at": "2021-01-23T14:39:07.779Z",
+    "updated_at": "2021-01-23T14:39:07.787Z"
+  }
+}
+""";

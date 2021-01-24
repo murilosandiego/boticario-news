@@ -26,8 +26,10 @@ class LoginPresenter extends GetxController {
   String _email;
   String _password;
 
-  LoginPresenter(
-      {@required this.saveCurrentAccount, @required this.authetication});
+  LoginPresenter({
+    @required this.saveCurrentAccount,
+    @required this.authetication,
+  });
 
   Worker _navigationWorker;
   Worker _mainErrorWorker;

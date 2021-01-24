@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:boticario_news/application/models/account_model.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/entities/account_entity.dart';
@@ -12,8 +15,9 @@ class LocalLoadCurrentAccount implements LoadCurrentAccount {
   @override
   Future<AccountEntity> load() async {
     try {
-      final token = await localStorage.fetch(key: 'token');
-      return AccountEntity(token: token);
+      final resultFetched = await localStorage.fetch(key: 'account');
+      return AccountModel.fromLocalStorage(jsonDecode(resultFetched))
+          .toEntity();
     } catch (_) {
       throw DomainError.unexpected;
     }

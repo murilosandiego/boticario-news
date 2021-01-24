@@ -124,11 +124,20 @@ void main() {
 
   group('SaveCurrentAccount use case', () {
     String token;
+    String username;
+    int id;
     AccountEntity account;
 
     setUp(() {
       token = faker.guid.guid();
-      account = AccountEntity(token: token);
+      username = faker.person.name();
+      id = faker.randomGenerator.integer(2);
+
+      account = AccountEntity(
+        token: token,
+        username: username,
+        id: id,
+      );
     });
 
     test('Should call SaveCurrentAccount with correct values', () async {

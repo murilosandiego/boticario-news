@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:boticario_news/application/models/account_model.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/entities/account_entity.dart';
@@ -13,7 +16,13 @@ class LocalSaveCurrentAccount implements SaveCurrentAccount {
   @override
   Future<void> save(AccountEntity account) async {
     try {
-      await localStorage.save(key: 'token', value: account.token);
+      final accountModel = AccountModel(
+        token: account.token,
+        username: account.username,
+        id: account.id,
+      );
+
+      await localStorage.save(key: 'account', value: jsonEncode(accountModel));
     } catch (_) {
       throw DomainError.unexpected;
     }
