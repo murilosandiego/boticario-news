@@ -53,7 +53,8 @@ class FeedPresenter extends GetxController {
           (a, b) => b.message.createdAt.compareTo(a.message.createdAt),
         );
 
-      final postsViewModel = _toViewModel(sortedResult);
+      final postsViewModel =
+          sortedResult.map((post) => toViewModel(post)).toList();
 
       news.assignAll(postsViewModel);
     } catch (error) {
@@ -80,22 +81,9 @@ class FeedPresenter extends GetxController {
     }
   }
 
-  List<NewsViewModel> _toViewModel(List<PostEntity> posts) {
-    return posts
-        .map(
-          (news) => NewsViewModel(
-            id: news.id,
-            message: utf8.decode(news.message.content.runes.toList()),
-            date: DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_BR')
-                .format(news.message.createdAt),
-            user: utf8.decode(news.user.name.runes.toList()),
-          ),
-        )
-        .toList();
-  }
-
-  toViewModel(PostEntity post) {
+  NewsViewModel toViewModel(PostEntity post) {
     return NewsViewModel(
+      id: post.id,
       message: utf8.decode(post.message.content.runes.toList()),
       date: DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_BR')
           .format(post.message.createdAt),
