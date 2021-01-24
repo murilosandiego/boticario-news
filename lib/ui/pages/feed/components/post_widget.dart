@@ -111,7 +111,10 @@ Future getBottomSheet({
                 'Editar ${news.id}',
                 textAlign: TextAlign.center,
               ),
-              onTap: () => showModalNewPost(context, news: news)),
+              onTap: () {
+                Get.back();
+                return showModalNewPost(context, news: news);
+              }),
           ListTile(
             title: Text(
               'Remover',

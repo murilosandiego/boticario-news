@@ -67,11 +67,19 @@ class FeedPresenter extends GetxController {
     }
   }
 
-  save() async {
+  save({int postId}) async {
     try {
-      final post = await savePost.save(message: _newPostMessage);
-      news.insert(0, toViewModel(post));
-      _newPostMessage = null;
+      final post = await savePost.save(
+        message: _newPostMessage,
+        postId: postId,
+      );
+
+      if (postId == null) {
+        news.insert(0, toViewModel(post));
+      } else {
+        var indexNews = news.indexWhere((post) => post.id == postId);
+        news[indexNews] = toViewModel(post);
+      }
     } catch (_) {
       _errorMessage.update((_) {});
 

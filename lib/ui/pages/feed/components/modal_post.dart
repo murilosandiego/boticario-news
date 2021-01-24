@@ -31,7 +31,9 @@ Future<void> showModalNewPost(BuildContext context, {NewsViewModel news}) {
         ? null
         : () {
             Get.back();
-            presenter.save();
+            presenter.save(
+              postId: news?.id,
+            );
           },
     textCancel: 'Cancelar',
   );
