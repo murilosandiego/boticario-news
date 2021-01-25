@@ -10,17 +10,33 @@ Future<void> showModalRemove({
 }) {
   final presenter = Get.find<FeedPresenter>();
 
-  return Get.defaultDialog(
-    title: 'Remover publicação?',
-    content: Text('Essa ação não poderá ser desfeita'),
-    textConfirm: 'Remover',
-    confirmTextColor: Theme.of(context).backgroundColor,
-    onConfirm: presenter.isFormValid == null
-        ? null
-        : () {
+  return showDialog(
+    context: context,
+    builder: (_) => AlertDialog(
+      title: Text('Remover publicação?'),
+      actions: [
+        TextButton(
+          onPressed: () => Get.back(),
+          child: Text(
+            'Cancelar'.toUpperCase(),
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
+        TextButton(
+          onPressed: () {
             Get.back();
             presenter.remove(news.id);
           },
-    textCancel: 'Cancelar',
+          child: Text(
+            'Remover'.toUpperCase(),
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
+      ],
+    ),
   );
 }

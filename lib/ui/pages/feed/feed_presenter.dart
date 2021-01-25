@@ -105,6 +105,10 @@ class FeedPresenter extends GetxController {
     }
   }
 
+  clearMessagePost() {
+    _errorMessageNewPost.value = null;
+  }
+
   NewsViewModel toViewModel(PostEntity post) {
     return NewsViewModel(
       id: post.id,
@@ -127,9 +131,11 @@ class FeedPresenter extends GetxController {
     }
 
     _errorMessageNewPost.value =
-        message.length > 280 ? UIError.invalidMessageNewPost : null;
+        message.length > 22 ? UIError.invalidMessageNewPost : null;
   }
 
   bool get isFormValid =>
-      _errorMessageNewPost.value == null && _newPostMessage != null;
+      _errorMessageNewPost.value == null &&
+      _newPostMessage != null &&
+      _newPostMessage?.isNotEmpty == true;
 }
