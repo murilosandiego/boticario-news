@@ -28,7 +28,7 @@ class SplashPresenter extends GetxController {
   Future<void> checkAccount({bool test = false}) async {
     try {
       if (!test) {
-        await Future.delayed(Duration(seconds: 3));
+        await Future.delayed(Duration(seconds: 5));
       }
 
       final account = await loadCurrentAccount.load();

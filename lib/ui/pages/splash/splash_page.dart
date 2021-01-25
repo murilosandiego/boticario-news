@@ -18,6 +18,7 @@ class SplashPage extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
+              SizedBox(height: 8),
               Text(
                 'murilosandiego1@gmail.com',
                 textAlign: TextAlign.center,
