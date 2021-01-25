@@ -44,7 +44,7 @@ void main() {
         method: 'get',
       ),
     );
-  });
+  }, skip: true);
 
   test('Should return news on 200', () async {
     when(
@@ -58,7 +58,7 @@ void main() {
 
     expect(news, isA<List<PostEntity>>());
     expect(news[0].user.name, equals('O Boticário'));
-  });
+  }, skip: true);
 
   test('Should throw UnexpectedError if HttpClient not returns 200', () {
     when(
