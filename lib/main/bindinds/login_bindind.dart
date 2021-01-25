@@ -14,7 +14,12 @@ class LoginBinding implements Bindings {
         httpClient: Get.find(), url: makeApiUrl('auth/local')));
     Get.lazyPut<SaveCurrentAccount>(
         () => LocalSaveCurrentAccount(localStorage: Get.find()));
-    Get.lazyPut(() => LoginPresenter(
-        authetication: Get.find(), saveCurrentAccount: Get.find()));
+    Get.lazyPut(
+      () => LoginPresenter(
+        authetication: Get.find(),
+        saveCurrentAccount: Get.find(),
+        userSession: Get.find(),
+      ),
+    );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:boticario_news/ui/helpers/user_session.dart';
 import 'package:faker/faker.dart';
 import 'package:boticario_news/domain/entities/account_entity.dart';
 import 'package:boticario_news/domain/usecases/load_current_account.dart';
@@ -8,13 +9,21 @@ import 'package:test/test.dart';
 
 class LoadCurrentAccountSpy extends Mock implements LoadCurrentAccount {}
 
+class UserSessionSpy extends Mock implements UserSession {}
+
 void main() {
-  LoadCurrentAccountSpy loadCurrentAccount;
   SplashPresenter sut;
+  LoadCurrentAccountSpy loadCurrentAccount;
+  UserSessionSpy userSession;
 
   setUp(() {
     loadCurrentAccount = LoadCurrentAccountSpy();
-    sut = SplashPresenter(loadCurrentAccount: loadCurrentAccount);
+    userSession = UserSessionSpy();
+
+    sut = SplashPresenter(
+      loadCurrentAccount: loadCurrentAccount,
+      userSession: userSession,
+    );
   });
 
   test('Should call LoadCurrentAccount', () async {

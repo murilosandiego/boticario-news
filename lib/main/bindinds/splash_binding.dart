@@ -9,6 +9,9 @@ class SplashBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<LoadCurrentAccount>(
         () => LocalLoadCurrentAccount(localStorage: Get.find()));
-    Get.put(SplashPresenter(loadCurrentAccount: Get.find()));
+    Get.put(SplashPresenter(
+      loadCurrentAccount: Get.find(),
+      userSession: Get.find(),
+    ));
   }
 }

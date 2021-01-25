@@ -1,3 +1,4 @@
+import 'package:boticario_news/ui/helpers/user_session.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
@@ -11,6 +12,7 @@ import '../../helpers/ui_error.dart';
 class SignUpPresenter extends GetxController {
   final AddAccount addAccount;
   final SaveCurrentAccount saveCurrentAccount;
+  final UserSession userSession;
 
   final _nameError = Rx<UIError>();
   final _emailError = Rx<UIError>();
@@ -29,10 +31,10 @@ class SignUpPresenter extends GetxController {
   String _email;
   String _password;
 
-  SignUpPresenter({
-    @required this.saveCurrentAccount,
-    @required this.addAccount,
-  });
+  SignUpPresenter(
+      {@required this.saveCurrentAccount,
+      @required this.addAccount,
+      @required this.userSession});
 
   Worker _navigationWorker;
   Worker _mainErrorWorker;
@@ -70,6 +72,11 @@ class SignUpPresenter extends GetxController {
       ));
 
       await saveCurrentAccount.save(account);
+
+      userSession.saveUser(
+        name: account.username,
+        id: account.id,
+      );
 
       _navigateTo.value = AppPages.feed;
     } on DomainError catch (error) {

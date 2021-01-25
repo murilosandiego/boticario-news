@@ -15,8 +15,8 @@ class SignupBinding implements Bindings {
     Get.lazyPut<SaveCurrentAccount>(
         () => LocalSaveCurrentAccount(localStorage: Get.find()));
     Get.lazyPut(() => SignUpPresenter(
-          addAccount: Get.find(),
-          saveCurrentAccount: Get.find(),
-        ));
+        addAccount: Get.find(),
+        saveCurrentAccount: Get.find(),
+        userSession: Get.find()));
   }
 }

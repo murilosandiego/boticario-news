@@ -1,3 +1,4 @@
+import 'package:boticario_news/ui/helpers/user_session.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
@@ -6,12 +7,16 @@ import '../../../main/pages/app_pages.dart';
 
 class SplashPresenter extends GetxController {
   final LoadCurrentAccount loadCurrentAccount;
+  final UserSession userSession;
 
   final _navigateTo = RxString();
 
   String get navigateTo => _navigateTo.value;
 
-  SplashPresenter({@required this.loadCurrentAccount});
+  SplashPresenter({
+    @required this.loadCurrentAccount,
+    @required this.userSession,
+  });
 
   @override
   void onInit() {
@@ -27,8 +32,15 @@ class SplashPresenter extends GetxController {
       }
 
       final account = await loadCurrentAccount.load();
-      _navigateTo.value =
-          account?.token != null ? AppPages.welcome : AppPages.feed;
+      if (account?.token != null) {
+        userSession.saveUser(
+          name: account.username,
+          id: account.id,
+        );
+        _navigateTo.value = AppPages.feed;
+      } else {
+        _navigateTo.value = AppPages.welcome;
+      }
     } catch (_) {
       _navigateTo.value = AppPages.welcome;
     }

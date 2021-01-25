@@ -1,4 +1,5 @@
 import 'package:boticario_news/domain/usecases/add_account.dart';
+import 'package:boticario_news/ui/helpers/user_session.dart';
 import 'package:boticario_news/ui/pages/signup/signup_presenter.dart';
 import 'package:faker/faker.dart';
 import 'package:boticario_news/domain/entities/account_entity.dart';
@@ -13,20 +14,25 @@ class AddAccountMock extends Mock implements AddAccount {}
 
 class SaveCurrentAccountSpy extends Mock implements SaveCurrentAccount {}
 
+class UserSessionSpy extends Mock implements UserSession {}
+
 void main() {
   SignUpPresenter sut;
-  AddAccountMock authentication;
+  AddAccountMock addAccount;
   SaveCurrentAccountSpy saveCurrentAccount;
+  UserSessionSpy userSession;
   String email;
   String password;
   String name;
 
   setUp(() {
-    authentication = AddAccountMock();
+    addAccount = AddAccountMock();
     saveCurrentAccount = SaveCurrentAccountSpy();
+    userSession = UserSessionSpy();
     sut = SignUpPresenter(
-      addAccount: authentication,
+      addAccount: addAccount,
       saveCurrentAccount: saveCurrentAccount,
+      userSession: userSession,
     );
     email = faker.internet.email();
     password = faker.internet.password();
@@ -120,6 +126,7 @@ void main() {
     });
 
     test('Should emits true if all field is valid', () {
+      sut.handleName(name);
       sut.handleEmail(email);
       sut.handlePassword(password);
 
@@ -129,13 +136,16 @@ void main() {
 
   group('AddAccount use case', () {
     test('Should call AddAcount with correct values', () async {
+      when(addAccount.add(any)).thenAnswer((_) async =>
+          AccountEntity(token: 'token', id: 123, username: 'user'));
+
       sut.handleEmail(email);
       sut.handlePassword(password);
       sut.handleName(name);
 
       await sut.add();
 
-      verify(authentication.add(AddAccountParams(
+      verify(addAccount.add(AddAccountParams(
         email: email,
         secret: password,
         name: name,
@@ -143,7 +153,7 @@ void main() {
     });
 
     test('Should emit UIError.unexpected if credencials invalid', () async {
-      when(authentication.add(any)).thenThrow(DomainError.invalidCredentials);
+      when(addAccount.add(any)).thenThrow(DomainError.invalidCredentials);
 
       await sut.add();
 
@@ -170,7 +180,7 @@ void main() {
     });
 
     test('Should call SaveCurrentAccount with correct values', () async {
-      when(authentication.add(any)).thenAnswer((_) async => account);
+      when(addAccount.add(any)).thenAnswer((_) async => account);
 
       await sut.add();
 
@@ -179,7 +189,7 @@ void main() {
 
     test('Should emit UIError.unexpected if SaveCurrentAccount fails',
         () async {
-      when(authentication.add(any)).thenAnswer((_) async => account);
+      when(addAccount.add(any)).thenAnswer((_) async => account);
       when(saveCurrentAccount.save(any)).thenThrow(DomainError.unexpected);
 
       await sut.add();

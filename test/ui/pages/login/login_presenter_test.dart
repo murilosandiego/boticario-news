@@ -1,3 +1,4 @@
+import 'package:boticario_news/ui/helpers/user_session.dart';
 import 'package:faker/faker.dart';
 import 'package:boticario_news/domain/entities/account_entity.dart';
 import 'package:boticario_news/domain/errors/domain_error.dart';
@@ -13,20 +14,25 @@ class AutheticationMock extends Mock implements Authetication {}
 
 class SaveCurrentAccountSpy extends Mock implements SaveCurrentAccount {}
 
+class UserSessionSpy extends Mock implements UserSession {}
+
 void main() {
   LoginPresenter sut;
   AutheticationMock authentication;
   SaveCurrentAccountSpy saveCurrentAccount;
+  UserSessionSpy userSessionSpy;
+
   String email;
   String password;
 
   setUp(() {
     authentication = AutheticationMock();
     saveCurrentAccount = SaveCurrentAccountSpy();
+    userSessionSpy = UserSessionSpy();
     sut = LoginPresenter(
-      authetication: authentication,
-      saveCurrentAccount: saveCurrentAccount,
-    );
+        authetication: authentication,
+        saveCurrentAccount: saveCurrentAccount,
+        userSession: userSessionSpy);
     email = faker.internet.email();
     password = faker.internet.password();
   });
@@ -103,6 +109,9 @@ void main() {
 
   group('Authentication use case', () {
     test('Should call Authentication with correct values', () async {
+      when(authentication.auth(any)).thenAnswer((_) async =>
+          AccountEntity(token: 'token', id: 123, username: 'user'));
+
       sut.handleEmail(email);
       sut.handlePassword(password);
 
