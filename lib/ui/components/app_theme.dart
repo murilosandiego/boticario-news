@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 ThemeData makeAppTheme() {
-  final primaryColor = Color(0xFF010A53);
-  final primaryColorDark = Color.fromRGBO(96, 0, 39, 1);
-  final primaryColorLight = Color.fromRGBO(188, 71, 123, 1);
-  final secondaryColor = Color.fromRGBO(0, 77, 64, 1);
-  final secondaryColorDark = Color.fromRGBO(0, 37, 26, 1);
+  final primaryColor = Color(0xFF1E70AB);
+  final primaryColorDark = Color(0xFF1E70AE);
+  final primaryColorLight = Color(0xFF8DC640);
+  final secondaryColor = Color(0xFFF38220);
+  final secondaryColorDark = Color(0xFFF38220);
   final disabledColor = Colors.grey[400];
   final dividerColor = Colors.grey;
   final textTheme = TextTheme(

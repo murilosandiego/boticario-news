@@ -1,6 +1,5 @@
 import 'package:boticario_news/main/bindinds/signup_bindind.dart';
 import 'package:boticario_news/ui/pages/signup/signup_page.dart';
-import 'package:boticario_news/ui/pages/signup/signup_presenter.dart';
 import 'package:get/get.dart';
 
 import '../../ui/pages/feed/feed_page.dart';
