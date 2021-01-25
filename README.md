@@ -7,6 +7,8 @@ Aplicativo desenvolvido em Flutter para o Desafio Mobile do Grupo Boticário.
 | ![01](./screenshots/01.png) | ![02](./screenshots/02.png) | ![03](./screenshots/03.png) |
 |                             |                             |                             |
 
+[![Build Status](https://travis-ci.com/murilosandiego/boticario-news.svg?branch=main)](https://travis-ci.com/murilosandiego/boticario-news)
+
 ## Download
 
 [Download do apk](./dist/app-release.apk)
