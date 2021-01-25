@@ -15,9 +15,11 @@ class LocalLoadCurrentAccount implements LoadCurrentAccount {
   @override
   Future<AccountEntity> load() async {
     try {
-      final resultFetched = await localStorage.fetch(key: 'account');
-      return AccountModel.fromLocalStorage(jsonDecode(resultFetched))
-          .toEntity();
+      String resultFetched = await localStorage.fetch(key: 'account');
+
+      return resultFetched == null
+          ? null
+          : AccountModel.fromLocalStorage(jsonDecode(resultFetched)).toEntity();
     } catch (_) {
       throw DomainError.unexpected;
     }
