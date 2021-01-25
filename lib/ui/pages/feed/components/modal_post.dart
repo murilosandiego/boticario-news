@@ -7,9 +7,8 @@ import 'package:get/get.dart';
 
 Future<void> showModalPost(BuildContext context, {NewsViewModel news}) {
   final presenter = Get.find<FeedPresenter>();
-
+  presenter.clearMessagePost();
   return showDialog(
-    barrierDismissible: false,
     context: context,
     builder: (_) => AlertDialog(
       title: Text('Criar publicação'),
@@ -38,7 +37,6 @@ Future<void> showModalPost(BuildContext context, {NewsViewModel news}) {
       actions: [
         TextButton(
           onPressed: () {
-            presenter.clearMessagePost();
             Get.back();
           },
           child: Text(
