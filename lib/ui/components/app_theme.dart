@@ -4,8 +4,8 @@ ThemeData makeAppTheme() {
   final primaryColor = Color(0xFF1E70AB);
   final primaryColorDark = Color(0xFF1E70AE);
   final primaryColorLight = Color(0xFF8DC640);
-  final secondaryColor = Color(0xFFF38220);
-  final secondaryColorDark = Color(0xFFF38220);
+  final secondaryColor = Color(0xFF3A93CC);
+  final secondaryColorDark = Color(0xFF3A93CC);
   final disabledColor = Colors.grey[400];
   final dividerColor = Colors.grey;
   final textTheme = TextTheme(
