@@ -23,19 +23,16 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
-      body: LayoutBuilder(
-        builder: (context, constraints) => SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 32),
-                  child: IconHeader(),
-                ),
-                FormLogin(),
-              ],
-            ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 32),
+                child: IconHeader(),
+              ),
+              FormLogin(),
+            ],
           ),
         ),
       ),
