@@ -14,11 +14,13 @@ Future<void> showModalRemove({
     context: context,
     builder: (_) => AlertDialog(
       title: Text('Remover publicação?'),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
       actions: [
         TextButton(
           onPressed: () => Get.back(),
           child: Text(
-            'Cancelar'.toUpperCase(),
+            'Cancelar',
             style: TextStyle(
               color: Theme.of(context).primaryColor,
             ),
@@ -30,7 +32,7 @@ Future<void> showModalRemove({
             presenter.remove(news.id);
           },
           child: Text(
-            'Remover'.toUpperCase(),
+            'Remover',
             style: TextStyle(
               color: Theme.of(context).primaryColor,
             ),

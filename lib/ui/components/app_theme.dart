@@ -9,11 +9,15 @@ ThemeData makeAppTheme() {
   final disabledColor = Colors.grey[400];
   final dividerColor = Colors.grey;
   final textTheme = TextTheme(
-      headline1: TextStyle(
-    fontSize: 30,
-    fontWeight: FontWeight.bold,
-    color: primaryColorDark,
-  ));
+    headline1: TextStyle(
+      fontSize: 30,
+      fontWeight: FontWeight.bold,
+      color: primaryColorDark,
+    ),
+    headline6: TextStyle(
+      fontSize: 18,
+    ),
+  );
   final inputDecorationTheme = InputDecorationTheme(
     contentPadding: EdgeInsets.symmetric(horizontal: 16),
     fillColor: Color(0XFFF0F0F0),

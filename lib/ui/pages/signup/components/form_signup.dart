@@ -61,8 +61,7 @@ class FormSignup extends StatelessWidget {
           ),
           SizedBox(height: 32),
           CreateAccountButton(
-            nameLeading: 'Já tenho conta. ',
-            nameButton: 'Fazer login',
+            nameButton: 'Já tem conta? Fazer login',
             onPressed: () => Get.offNamed(
               AppPages.login,
             ),

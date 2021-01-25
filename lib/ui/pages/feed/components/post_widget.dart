@@ -52,8 +52,7 @@ class _Header extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CircleAvatar(
-          backgroundImage: NetworkImage(
-              'https://media-exp1.licdn.com/dms/image/C560BAQG4uMrwe88_iw/company-logo_200_200/0/1541427487948?e=2159024400&v=beta&t=LBMdRY6FnajvFN1nw46vFHscfkqRmMzOtpqW-8zqVi4'),
+          child: Icon(Icons.person),
         ),
         Expanded(
           child: Padding(
@@ -75,16 +74,17 @@ class _Header extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          height: 25,
-          width: 25,
-          child: FlatButton(
-            textColor: Colors.black54,
-            padding: EdgeInsets.zero,
-            onPressed: () => getBottomSheet(context: context, news: news),
-            child: Icon(Icons.more_vert),
-          ),
-        )
+        if (news.id != null)
+          Container(
+            height: 25,
+            width: 25,
+            child: FlatButton(
+              textColor: Colors.black54,
+              padding: EdgeInsets.zero,
+              onPressed: () => getBottomSheet(context: context, news: news),
+              child: Icon(Icons.more_vert),
+            ),
+          )
       ],
     );
   }

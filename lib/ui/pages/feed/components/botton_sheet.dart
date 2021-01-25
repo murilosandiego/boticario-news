@@ -24,6 +24,9 @@ Future getBottomSheet({
               title: Text(
                 'Editar',
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               onTap: () {
                 Get.back();
@@ -36,6 +39,9 @@ Future getBottomSheet({
             title: Text(
               'Remover',
               textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
             ),
             onTap: () {
               Get.back();

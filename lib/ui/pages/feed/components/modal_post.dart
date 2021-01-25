@@ -7,10 +7,12 @@ import 'package:get/get.dart';
 
 Future<void> showModalPost(BuildContext context, {NewsViewModel news}) {
   final presenter = Get.find<FeedPresenter>();
-  presenter.clearMessagePost();
+
   return showDialog(
     context: context,
     builder: (_) => AlertDialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
       title: Text('Criar publicação'),
       content: Obx(
         () => TextFormField(
@@ -40,7 +42,7 @@ Future<void> showModalPost(BuildContext context, {NewsViewModel news}) {
             Get.back();
           },
           child: Text(
-            'Cancelar'.toUpperCase(),
+            'Cancelar',
             style: TextStyle(
               color: Theme.of(context).primaryColor,
             ),
@@ -57,7 +59,7 @@ Future<void> showModalPost(BuildContext context, {NewsViewModel news}) {
                     );
                   },
             child: Text(
-              'Publicar'.toUpperCase(),
+              'Publicar',
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
               ),
