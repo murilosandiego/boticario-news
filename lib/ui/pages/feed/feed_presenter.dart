@@ -1,5 +1,3 @@
-import 'dart:convert' show utf8;
-
 import '../../../main/pages/app_pages.dart';
 import '../../helpers/user_session.dart';
 import 'package:get/get.dart';
@@ -14,7 +12,6 @@ import '../../../domain/usecases/remove_post.dart';
 import '../../../domain/usecases/save_post.dart';
 import '../../helpers/ui_error.dart';
 import 'post_viewmodel.dart';
-import 'package:characters/characters.dart';
 
 class FeedPresenter extends GetxController {
   final LoadNews loadNews;
