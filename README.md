@@ -1,11 +1,15 @@
 # Boticário NEWS
 
-Aplicativo desenvolvido em Flutter para o Desafio Mobile do Boticário.
+Aplicativo desenvolvido em Flutter para o Desafio Mobile do Grupo Boticário.
 
 |                             |                             |                             |
 | :-------------------------- | :-------------------------: | :-------------------------: |
 | ![01](./screenshots/01.png) | ![02](./screenshots/02.png) | ![03](./screenshots/03.png) |
 |                             |                             |                             |
+
+## Download
+
+[Download do apk](./dist/app-release.apk)
 
 ## Pacotes
 
