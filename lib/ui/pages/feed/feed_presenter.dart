@@ -119,11 +119,12 @@ class FeedPresenter extends GetxController {
 
   NewsViewModel toViewModel(PostEntity post) {
     return NewsViewModel(
-      id: post.id,
-      message: utf8.decode(post.message.content.runes.toList()),
+      id: post?.id,
+      message: utf8.decode(post?.message?.content?.runes?.toList()),
       date: DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_BR')
-          .format(post.message.createdAt),
-      user: utf8.decode(post.user.name.runes.toList()),
+          .format(post?.message?.createdAt),
+      user: utf8.decode(post?.user?.name?.runes?.toList()),
+      userId: post?.user?.id,
     );
   }
 

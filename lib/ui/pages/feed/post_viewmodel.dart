@@ -6,12 +6,14 @@ class NewsViewModel extends Equatable {
   final String date;
   final String user;
   final int id;
+  final int userId;
 
   NewsViewModel({
     @required this.message,
     @required this.date,
     @required this.user,
     this.id,
+    this.userId,
   });
 
   @override

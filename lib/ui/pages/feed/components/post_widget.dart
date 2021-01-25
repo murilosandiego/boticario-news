@@ -1,3 +1,4 @@
+import 'package:boticario_news/ui/helpers/user_session.dart';
 import 'package:flutter/material.dart';
 
 import '../post_viewmodel.dart';
@@ -74,7 +75,7 @@ class _Header extends StatelessWidget {
             ),
           ),
         ),
-        if (news.id != null)
+        if (news.id != null && news.userId == UserSession.to.id)
           Container(
             height: 25,
             width: 25,
