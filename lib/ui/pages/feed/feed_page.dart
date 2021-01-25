@@ -30,30 +30,33 @@ class FeedPage extends StatelessWidget {
         onPressed: () => showModalPost(context),
         child: Icon(Icons.post_add),
       ),
-      body: Obx(
-        () {
-          if (presenter.errorMessage.isNotEmpty) {
-            return ReloadScreen(
-              error: presenter.errorMessage,
-              reload: presenter.load,
-            );
-          }
-          return presenter.isLoading
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : ListView.builder(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  itemCount: presenter.news.length,
-                  itemBuilder: (_, index) {
-                    final news = presenter.news[index];
-                    return PostWidget(news: news);
-                  },
-                );
-        },
+      body: RefreshIndicator(
+        child: Obx(
+          () {
+            if (presenter.errorMessage.isNotEmpty) {
+              return ReloadScreen(
+                error: presenter.errorMessage,
+                reload: presenter.load,
+              );
+            }
+            return presenter.isLoading
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    itemCount: presenter.news.length,
+                    itemBuilder: (_, index) {
+                      final news = presenter.news[index];
+                      return PostWidget(news: news);
+                    },
+                  );
+          },
+        ),
+        onRefresh: () => presenter.load(),
       ),
     );
   }
