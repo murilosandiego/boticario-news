@@ -1,8 +1,8 @@
-import 'components/modal_post.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../components/reload_screen.dart';
+import 'components/modal_post.dart';
 import 'components/post_widget.dart';
 import 'feed_presenter.dart';
 

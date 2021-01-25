@@ -17,9 +17,7 @@ class RemoteLoadNews implements LoadNews {
       final response = await httpClient.request(url: url, method: 'get');
       return (response['news'] as List)
           .map((json) => PostModel.fromJson(json))
-          .toList()
-            ..sort(
-                (a, b) => b.message.createdAt.compareTo(a.message.createdAt));
+          .toList();
     } catch (_) {
       throw DomainError.unexpected;
     }

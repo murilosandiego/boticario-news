@@ -1,12 +1,12 @@
-import 'package:boticario_news/main/pages/app_pages.dart';
-import 'package:boticario_news/ui/components/create_account_button.dart';
-import 'package:boticario_news/ui/pages/signup/signup_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../main/pages/app_pages.dart';
 import '../../../components/app_button.dart';
 import '../../../components/app_text_form_field.dart';
+import '../../../components/create_account_button.dart';
 import '../../../helpers/ui_error.dart';
+import '../signup_presenter.dart';
 
 class FormSignup extends StatelessWidget {
   @override

@@ -1,7 +1,7 @@
 import 'dart:convert' show utf8;
 
-import 'package:boticario_news/main/pages/app_pages.dart';
-import 'package:boticario_news/ui/helpers/user_session.dart';
+import '../../../main/pages/app_pages.dart';
+import '../../helpers/user_session.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:localstorage/localstorage.dart';
@@ -14,6 +14,7 @@ import '../../../domain/usecases/remove_post.dart';
 import '../../../domain/usecases/save_post.dart';
 import '../../helpers/ui_error.dart';
 import 'post_viewmodel.dart';
+import 'package:characters/characters.dart';
 
 class FeedPresenter extends GetxController {
   final LoadNews loadNews;
@@ -117,14 +118,22 @@ class FeedPresenter extends GetxController {
   }
 
   NewsViewModel toViewModel(PostEntity post) {
+    // return NewsViewModel(
+    //   id: post?.id,
+    //   message: utf8.decode(post?.message?.content?.runes?.toList(),
+    //       allowMalformed: true),
+    //   date: DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_BR')
+    //       .format(post?.message?.createdAt),
+    //   user: utf8.decode(post?.user?.name?.runes?.toList()),
+    //   userId: post?.user?.id,
+    // );
+
     return NewsViewModel(
       id: post?.id,
-      message: utf8.decode(post?.message?.content?.runes?.toList(),
-          allowMalformed: true),
+      message: post?.message?.content,
       date: DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_BR')
           .format(post?.message?.createdAt),
-      user:
-          utf8.decode(post?.user?.name?.runes?.toList(), allowMalformed: true),
+      user: post?.user?.name,
       userId: post?.user?.id,
     );
   }

@@ -1,9 +1,10 @@
-import '../feed_presenter.dart';
-import '../post_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../helpers/ui_error.dart';
 import 'package:get/get.dart';
+
+import '../../../helpers/ui_error.dart';
+import '../feed_presenter.dart';
+import '../post_viewmodel.dart';
 
 Future<void> showModalPost(BuildContext context, {NewsViewModel news}) {
   final presenter = Get.find<FeedPresenter>();

@@ -1,9 +1,9 @@
-import 'package:boticario_news/ui/pages/feed/components/modal_remove.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../post_viewmodel.dart';
 import 'modal_post.dart';
+import 'modal_remove.dart';
 
 Future getBottomSheet({
   @required BuildContext context,

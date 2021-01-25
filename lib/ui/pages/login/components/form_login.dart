@@ -1,5 +1,5 @@
-import 'package:boticario_news/main/pages/app_pages.dart';
-import 'package:boticario_news/ui/components/create_account_button.dart';
+import '../../../../main/pages/app_pages.dart';
+import '../../../components/create_account_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

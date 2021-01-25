@@ -1,4 +1,4 @@
-import 'package:boticario_news/ui/helpers/user_session.dart';
+import '../../helpers/user_session.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 

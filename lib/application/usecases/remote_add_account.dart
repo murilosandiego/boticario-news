@@ -1,4 +1,4 @@
-import 'package:boticario_news/domain/usecases/add_account.dart';
+import '../../domain/usecases/add_account.dart';
 import 'package:meta/meta.dart' show required;
 
 import '../../domain/entities/account_entity.dart';

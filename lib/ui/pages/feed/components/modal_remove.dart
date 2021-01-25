@@ -1,8 +1,9 @@
-import '../feed_presenter.dart';
-import '../post_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../feed_presenter.dart';
+import '../post_viewmodel.dart';
 
 Future<void> showModalRemove({
   @required NewsViewModel news,

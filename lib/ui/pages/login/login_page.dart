@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:boticario_news/ui/components/logo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../components/logo_widget.dart';
 import 'components/form_login.dart';
 
 class LoginPage extends StatelessWidget {

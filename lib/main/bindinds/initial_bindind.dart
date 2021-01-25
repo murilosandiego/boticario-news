@@ -1,4 +1,3 @@
-import 'package:boticario_news/ui/helpers/user_session.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'package:localstorage/localstorage.dart' as LocalStorageLib;
@@ -7,6 +6,7 @@ import '../../application/http/http_client.dart';
 import '../../application/storage/local_storage.dart';
 import '../../infra/http/http_adapter.dart';
 import '../../infra/storage/local_storage_adater.dart';
+import '../../ui/helpers/user_session.dart';
 
 class InitialBinding implements Bindings {
   @override

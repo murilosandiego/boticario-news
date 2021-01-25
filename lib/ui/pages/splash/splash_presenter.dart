@@ -1,9 +1,9 @@
-import 'package:boticario_news/ui/helpers/user_session.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
 import '../../../domain/usecases/load_current_account.dart';
 import '../../../main/pages/app_pages.dart';
+import '../../helpers/user_session.dart';
 
 class SplashPresenter extends GetxController {
   final LoadCurrentAccount loadCurrentAccount;
