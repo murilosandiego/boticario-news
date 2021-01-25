@@ -50,7 +50,6 @@ class FeedPresenter extends GetxController {
   }
 
   load() async {
-    _isLoading.value = true;
     _errorMessage.value = '';
     try {
       final newsBoticario = await loadNews.load();
