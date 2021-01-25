@@ -17,6 +17,7 @@ Future<void> showModalPost(BuildContext context, {NewsViewModel news}) {
       title: Text('Criar publicação'),
       content: Obx(
         () => TextFormField(
+          autofocus: true,
           decoration: InputDecoration(
             hintText: 'O que deseja compartilhar?',
             errorText: presenter.errorMessageNewPost == null
