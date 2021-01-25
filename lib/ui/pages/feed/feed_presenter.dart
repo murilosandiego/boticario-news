@@ -131,7 +131,7 @@ class FeedPresenter extends GetxController {
     }
 
     _errorMessageNewPost.value =
-        message.length > 22 ? UIError.invalidMessageNewPost : null;
+        message.length > 280 ? UIError.invalidMessageNewPost : null;
   }
 
   bool get isFormValid =>
