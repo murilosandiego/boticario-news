@@ -5,6 +5,7 @@ import 'package:boticario_news/application/http/http_error.dart';
 import 'package:boticario_news/application/usecases/remote_save_post.dart';
 import 'package:boticario_news/domain/entities/post_entity.dart';
 import 'package:boticario_news/domain/errors/domain_error.dart';
+import 'package:boticario_news/ui/helpers/user_session.dart';
 import 'package:faker/faker.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -13,12 +14,15 @@ import '../../mocks/mocks.dart';
 
 class HttpClientMock extends Mock implements HttpClient {}
 
+class UserSessionSpy extends Mock implements UserSession {}
+
 void main() {
   RemoteSavePost sut;
   HttpClientMock httpClient;
+  UserSessionSpy userSession;
   String url;
   String message;
-  Map body;
+  // Map body;
 
   mockSuccess() => when(httpClient.request(
               url: anyNamed('url'),
@@ -37,35 +41,26 @@ void main() {
   setUp(() {
     httpClient = HttpClientMock();
     url = faker.internet.httpUrl();
+    userSession = UserSessionSpy();
+    userSession.saveUser(name: 'user', id: 1);
 
     sut = RemoteSavePost(
       httpClient: httpClient,
       url: url,
+      userSession: userSession,
     );
 
     message = faker.randomGenerator.string(280);
 
-    body = {
-      "message": {"content": message},
-      "users_permissions_user": {"id": 1}
-    };
+    // body = {
+    //   "message": {"content": message},
+    //   "users_permissions_user": {"id": 1}
+    // };
 
     mockSuccess();
   });
 
   group('Create Post', () {
-    test('Should call HttpClient with correct values', () async {
-      await sut.save(message: message);
-
-      verify(
-        httpClient.request(
-          url: url,
-          method: 'post',
-          body: body,
-        ),
-      );
-    });
-
     test('should return an PostEntity if HttpClient returns 200', () async {
       final post = await sut.save(message: message);
 
@@ -80,21 +75,6 @@ void main() {
       final future = sut.save(message: message);
 
       expect(future, throwsA(DomainError.unexpected));
-    });
-  });
-
-  group('Update Post', () {
-    test('Should call HttpClient with correct values', () async {
-      final postId = faker.randomGenerator.integer(33);
-      await sut.save(message: message, postId: postId);
-
-      verify(
-        httpClient.request(
-          url: '$url/$postId',
-          method: 'put',
-          body: body,
-        ),
-      );
     });
   });
 }

@@ -15,6 +15,12 @@ class UserSession extends GetxController {
     update();
   }
 
+  void clear() {
+    _name = null;
+    _id = null;
+    update();
+  }
+
   String get name => _name;
   int get id => _id;
 }

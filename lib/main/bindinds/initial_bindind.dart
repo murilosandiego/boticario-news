@@ -11,10 +11,13 @@ import '../../infra/storage/local_storage_adater.dart';
 class InitialBinding implements Bindings {
   @override
   void dependencies() {
-    final storage = LocalStorageLib.LocalStorage('app_local');
+    Get.put(LocalStorageLib.LocalStorage('app_local'));
     Get.put(UserSession(), permanent: true);
     Get.put<HttpClient>(HttpAdapter(Client()), permanent: true);
-    Get.put<LocalStorage>(LocalStorageAdapter(localStorage: storage),
+    Get.put<CacheLocalStorage>(
+        LocalStorageAdapter(
+          localStorage: Get.find(),
+        ),
         permanent: true);
   }
 }

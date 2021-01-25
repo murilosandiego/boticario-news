@@ -9,7 +9,7 @@ import '../models/account_model.dart';
 import '../storage/local_storage.dart';
 
 class LocalSaveCurrentAccount implements SaveCurrentAccount {
-  final LocalStorage localStorage;
+  final CacheLocalStorage localStorage;
 
   LocalSaveCurrentAccount({@required this.localStorage});
 

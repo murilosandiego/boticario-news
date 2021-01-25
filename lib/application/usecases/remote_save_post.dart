@@ -1,3 +1,4 @@
+import 'package:boticario_news/ui/helpers/user_session.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/entities/post_entity.dart';
@@ -9,14 +10,17 @@ import '../models/post_model.dart';
 class RemoteSavePost implements SavePost {
   final HttpClient httpClient;
   final String url;
+  final UserSession userSession;
 
-  RemoteSavePost({this.httpClient, this.url});
+  RemoteSavePost({this.httpClient, this.url, this.userSession});
 
   @override
   Future<PostEntity> save({@required String message, int postId}) async {
     final body = {
       "message": {"content": message},
-      "users_permissions_user": {"id": 1}
+      "users_permissions_user": {
+        "id": userSession.id,
+      }
     };
     try {
       final httpResponse = await httpClient.request(

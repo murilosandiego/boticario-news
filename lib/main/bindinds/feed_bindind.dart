@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:localstorage/localstorage.dart';
 
 import '../../application/usecases/remote_load_news.dart';
 import '../../application/usecases/remote_load_posts.dart';
@@ -27,9 +28,9 @@ class FeedBinding implements Bindings {
     );
     Get.lazyPut<SavePost>(
       () => RemoteSavePost(
-        httpClient: Get.find(),
-        url: makeApiUrl('news'),
-      ),
+          httpClient: Get.find(),
+          url: makeApiUrl('news'),
+          userSession: Get.find()),
     );
     Get.lazyPut<RemovePost>(
       () => RemoteRemovePost(
@@ -37,10 +38,15 @@ class FeedBinding implements Bindings {
         url: makeApiUrl('news'),
       ),
     );
-    Get.lazyPut(() => FeedPresenter(
+    Get.lazyPut(
+      () => FeedPresenter(
         loadNews: Get.find(),
         loadPosts: Get.find(),
         savePost: Get.find(),
-        removePost: Get.find()));
+        removePost: Get.find(),
+        userSession: Get.find(),
+        localStorage: Get.find<LocalStorage>(),
+      ),
+    );
   }
 }

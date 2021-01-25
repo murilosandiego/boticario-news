@@ -1,7 +1,10 @@
 import 'dart:convert' show utf8;
 
+import 'package:boticario_news/main/pages/app_pages.dart';
+import 'package:boticario_news/ui/helpers/user_session.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:meta/meta.dart' show required;
 
 import '../../../domain/entities/post_entity.dart';
@@ -17,6 +20,8 @@ class FeedPresenter extends GetxController {
   final LoadPosts loadPosts;
   final SavePost savePost;
   final RemovePost removePost;
+  final LocalStorage localStorage;
+  final UserSession userSession;
 
   final news = RxList<NewsViewModel>();
   final _isLoading = true.obs;
@@ -29,11 +34,14 @@ class FeedPresenter extends GetxController {
 
   String _newPostMessage;
 
-  FeedPresenter(
-      {@required this.loadNews,
-      @required this.loadPosts,
-      @required this.savePost,
-      @required this.removePost});
+  FeedPresenter({
+    @required this.loadNews,
+    @required this.loadPosts,
+    @required this.savePost,
+    @required this.removePost,
+    this.localStorage,
+    this.userSession,
+  });
 
   @override
   onInit() {
@@ -132,6 +140,13 @@ class FeedPresenter extends GetxController {
 
     _errorMessageNewPost.value =
         message.length > 280 ? UIError.invalidMessageNewPost : null;
+  }
+
+  void logoutUser() async {
+    _isLoading.value = true;
+    await localStorage.clear();
+    userSession.clear();
+    Get.offAllNamed(AppPages.welcome);
   }
 
   bool get isFormValid =>

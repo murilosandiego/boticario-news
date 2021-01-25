@@ -126,7 +126,7 @@ const factoryNewPostApiResponse = """
 {
   "id": 4,
   "users_permissions_user": {
-    "id": 2,
+    "id": 1,
     "username": "user",
     "email": "user@mail.com",
     "provider": "local",

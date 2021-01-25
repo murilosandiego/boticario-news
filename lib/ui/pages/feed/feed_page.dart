@@ -19,6 +19,12 @@ class FeedPage extends StatelessWidget {
           'Feed',
           style: TextStyle(fontSize: 17),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () => presenter.logoutUser(),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => showModalPost(context),

@@ -9,7 +9,7 @@ import 'package:boticario_news/domain/errors/domain_error.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-class LocalStorageSpy extends Mock implements LocalStorage {}
+class LocalStorageSpy extends Mock implements CacheLocalStorage {}
 
 void main() {
   LocalStorageSpy localStorage;

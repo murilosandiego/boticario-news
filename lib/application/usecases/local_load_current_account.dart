@@ -9,7 +9,7 @@ import '../models/account_model.dart';
 import '../storage/local_storage.dart';
 
 class LocalLoadCurrentAccount implements LoadCurrentAccount {
-  final LocalStorage localStorage;
+  final CacheLocalStorage localStorage;
 
   LocalLoadCurrentAccount({@required this.localStorage});
   @override
