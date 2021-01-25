@@ -1,3 +1,4 @@
+import 'package:boticario_news/ui/components/create_account_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,16 +19,12 @@ class Buttons extends StatelessWidget {
             onPressed: () => Get.toNamed(AppPages.login),
           ),
         ),
-        SizedBox(height: 16),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: AppButton(
-            text: 'Criar conta',
-            textColor: Colors.white,
-            outLine: true,
-            borderColor: Colors.white,
-            onPressed: () {},
+        SizedBox(height: 32),
+        CreateAccountButton(
+          onPressed: () => Get.toNamed(
+            AppPages.signup,
           ),
+          backgroundWhite: false,
         ),
       ],
     );

@@ -1,3 +1,5 @@
+import 'package:boticario_news/main/pages/app_pages.dart';
+import 'package:boticario_news/ui/components/create_account_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,13 +48,13 @@ class FormLogin extends StatelessWidget {
               onPressed: presenter.isFormValid ? () => presenter.auth() : null,
             ),
           ),
-          SizedBox(height: 16),
-          AppButton(
-            outLine: true,
-            text: 'Criar conta',
-            color: Colors.white,
-            onPressed: () {},
-          ),
+          SizedBox(height: 32),
+          CreateAccountButton(
+            onPressed: () => Get.offNamed(
+              AppPages.signup,
+            ),
+            backgroundWhite: true,
+          )
         ],
       ),
     );

@@ -28,7 +28,7 @@ class SplashPresenter extends GetxController {
 
       final account = await loadCurrentAccount.load();
       _navigateTo.value =
-          account?.token == null ? AppPages.welcome : AppPages.feed;
+          account?.token != null ? AppPages.welcome : AppPages.feed;
     } catch (_) {
       _navigateTo.value = AppPages.welcome;
     }

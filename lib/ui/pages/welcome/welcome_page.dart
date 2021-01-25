@@ -8,12 +8,16 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          LogoWidget(),
-          Buttons(),
-        ],
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              LogoWidget(),
+              SizedBox(height: 100),
+              Buttons(),
+            ],
+          ),
+        ),
       ),
     );
   }

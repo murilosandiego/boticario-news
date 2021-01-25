@@ -1,3 +1,5 @@
+import 'package:boticario_news/main/pages/app_pages.dart';
+import 'package:boticario_news/ui/components/create_account_button.dart';
 import 'package:boticario_news/ui/pages/signup/signup_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +8,7 @@ import '../../../components/app_button.dart';
 import '../../../components/app_text_form_field.dart';
 import '../../../helpers/ui_error.dart';
 
-class FormLogin extends StatelessWidget {
+class FormSignup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final presenter = Get.find<SignUpPresenter>();
@@ -18,14 +20,14 @@ class FormLogin extends StatelessWidget {
           Obx(
             () => AppTextFormField(
               label: 'Nome',
-              onChanged: presenter.handleEmail,
-              errorText: presenter.emailError != null
-                  ? presenter.emailError.description
+              onChanged: presenter.handleName,
+              errorText: presenter.nameError != null
+                  ? presenter.nameError.description
                   : null,
-              textInputType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
             ),
           ),
+          SizedBox(height: 26),
           Obx(
             () => AppTextFormField(
               label: 'E-mail',
@@ -52,18 +54,20 @@ class FormLogin extends StatelessWidget {
           Obx(
             () => AppButton(
               isLoading: presenter.isLoading,
-              text: 'Login',
+              text: 'Criar conta',
               textColor: Colors.white,
               onPressed: presenter.isFormValid ? () => presenter.add() : null,
             ),
           ),
-          SizedBox(height: 16),
-          AppButton(
-            outLine: true,
-            text: 'Criar conta',
-            color: Colors.white,
-            onPressed: () {},
-          ),
+          SizedBox(height: 32),
+          CreateAccountButton(
+            nameLeading: 'Já tenho conta. ',
+            nameButton: 'Fazer login',
+            onPressed: () => Get.offNamed(
+              AppPages.login,
+            ),
+            backgroundWhite: true,
+          )
         ],
       ),
     );

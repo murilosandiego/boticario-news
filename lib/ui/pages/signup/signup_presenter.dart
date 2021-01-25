@@ -87,9 +87,11 @@ class SignUpPresenter extends GetxController {
 
   bool get isFormValid =>
       _emailError.value == null &&
+      _nameError.value == null &&
       _passwordError.value == null &&
       _email != null &&
-      _password != null;
+      _password != null &&
+      _name != null;
 
   void _handleNavigation() {
     _navigationWorker = ever(_navigateTo, (page) {

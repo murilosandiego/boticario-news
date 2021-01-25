@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'components/form_login.dart';
+import 'components/form_signup.dart';
 import 'components/icon_header.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -17,7 +17,7 @@ class SignUpPage extends StatelessWidget {
         ),
         centerTitle: true,
         title: Text(
-          'Entrar com e-mail',
+          'Criar conta',
           style: TextStyle(
             fontSize: 17,
           ),
@@ -31,7 +31,7 @@ class SignUpPage extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 32),
                 child: IconHeader(),
               ),
-              FormLogin(),
+              FormSignup(),
             ],
           ),
         ),

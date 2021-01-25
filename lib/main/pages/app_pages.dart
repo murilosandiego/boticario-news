@@ -1,3 +1,6 @@
+import 'package:boticario_news/main/bindinds/signup_bindind.dart';
+import 'package:boticario_news/ui/pages/signup/signup_page.dart';
+import 'package:boticario_news/ui/pages/signup/signup_presenter.dart';
 import 'package:get/get.dart';
 
 import '../../ui/pages/feed/feed_page.dart';
@@ -15,6 +18,7 @@ abstract class AppPages {
   static const login = '/login';
   static const feed = '/feed';
   static const newPost = '/newPost';
+  static const signup = 'signup';
 
   static final pages = [
     GetPage(
@@ -30,6 +34,13 @@ abstract class AppPages {
       name: login,
       page: () => LoginPage(),
       binding: LoginBinding(),
+      transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: signup,
+      page: () => SignUpPage(),
+      binding: SignupBinding(),
+      transition: Transition.downToUp,
     ),
     GetPage(
       name: feed,
