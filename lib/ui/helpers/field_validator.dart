@@ -7,11 +7,11 @@ class Validator {
       return null;
     }
 
-    if (field?.isEmpty == true) {
+    if (field.isEmpty == true) {
       return UIError.requiredField;
     }
 
-    return field?.isEmail == true ? null : UIError.invalidEmail;
+    return field.isEmail == true ? null : UIError.invalidEmail;
   }
 
   static UIError requiredField(String field) {
