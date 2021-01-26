@@ -39,93 +39,53 @@ void main() {
     name = faker.person.name();
   });
 
-  group('validateEmail', () {
-    test('Should emit requiredFieldError if email is empty', () {
-      const email = '';
+  group('isFormValid', () {
+    test('Should returns false if name is null', () {
       sut.handleEmail(email);
-
-      expect(sut.emailError, UIError.requiredField);
-    });
-
-    test('Should emit null if email is null', () {
-      String email;
-      sut.handleEmail(email);
-
-      expect(sut.emailError, null);
-    });
-
-    test('Should emit invalidEmail if email is invalid', () {
-      String email = 'asdf';
-      sut.handleEmail(email);
-
-      expect(sut.emailError, UIError.invalidEmail);
-    });
-
-    test('Should emit null if validation succeeds', () {
-      String email = faker.internet.email();
-      sut.handleEmail(email);
-
-      expect(sut.emailError, null);
-    });
-  });
-
-  group('validatePassword', () {
-    test('Should emit requiredFieldError if password is empty', () {
-      const password = '';
-
       sut.handlePassword(password);
 
-      expect(sut.passwordError, UIError.requiredField);
+      expect(sut.isFormValid, false);
     });
 
-    test('Should emit null if password is null', () {
-      String password;
+    test('Should returns false if name is empty', () {
+      sut.handleName('');
+      sut.handleEmail(email);
       sut.handlePassword(password);
 
-      expect(sut.passwordError, null);
+      expect(sut.isFormValid, false);
     });
 
-    test('Should emit null if has password', () {
-      String password = faker.internet.password();
+    test('Should returns false if email is null', () {
+      sut.handleName(name);
       sut.handlePassword(password);
 
-      expect(sut.passwordError, null);
+      expect(sut.isFormValid, false);
     });
-  });
 
-  group('validateName', () {
-    test('Should emit requiredFieldError if name is empty', () {
-      const name = '';
-
+    test('Should returns false if email is not valid', () {
       sut.handleName(name);
+      sut.handleEmail('as');
+      sut.handlePassword(password);
 
-      expect(sut.nameError, UIError.requiredField);
+      expect(sut.isFormValid, false);
     });
 
-    test('Should emit null if password is null', () {
-      String name;
+    test('Should returns false if password is null', () {
       sut.handleName(name);
-
-      expect(sut.nameError, null);
-    });
-
-    test('Should emit null if has password', () {
-      String name = faker.person.name();
-      sut.handleName(name);
-
-      expect(sut.nameError, null);
-    });
-  });
-
-  group('validateForm', () {
-    test('Should emits false if any field is invalid', () {
-      const email = 'asd';
       sut.handleEmail(email);
 
       expect(sut.isFormValid, false);
     });
 
-    test('Should emits true if all field is valid', () {
+    test('Should returns false if password is empty', () {
+      sut.handleName(name);
+      sut.handleEmail(email);
+      sut.handlePassword('');
+
+      expect(sut.isFormValid, false);
+    });
+
+    test('Should returns true if all field is valid', () {
       sut.handleName(name);
       sut.handleEmail(email);
       sut.handlePassword(password);

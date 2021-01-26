@@ -1,3 +1,4 @@
+import 'package:boticario_news/ui/helpers/field_validator.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
@@ -14,46 +15,30 @@ class LoginPresenter extends GetxController {
   final SaveCurrentAccount saveCurrentAccount;
   final UserSession userSession;
 
+  LoginPresenter({
+    @required this.saveCurrentAccount,
+    @required this.authetication,
+    @required this.userSession,
+  });
+
   final _emailError = Rx<UIError>();
   final _passwordError = Rx<UIError>();
   final _isLoading = false.obs;
   final _navigateTo = RxString();
   final _mainError = Rx<UIError>();
 
+  String _email;
+  String _password;
+
+  Worker _navigationWorker;
+  Worker _mainErrorWorker;
+
   UIError get passwordError => _passwordError.value;
   UIError get emailError => _emailError.value;
   UIError get mainError => _mainError.value;
   bool get isLoading => _isLoading.value;
 
-  String _email;
-  String _password;
-
-  LoginPresenter(
-      {@required this.saveCurrentAccount,
-      @required this.authetication,
-      @required this.userSession});
-
-  Worker _navigationWorker;
-  Worker _mainErrorWorker;
-
-  @override
-  void onInit() {
-    super.onInit();
-    _handleNavigation();
-    _handleMainError();
-  }
-
-  void handleEmail(String email) {
-    _email = email;
-    _validateEmail(email);
-  }
-
-  void handlePassword(String password) {
-    _password = password;
-    _validatePassword(password);
-  }
-
-  auth() async {
+  Future<void> auth() async {
     try {
       _isLoading.value = true;
 
@@ -81,6 +66,16 @@ class LoginPresenter extends GetxController {
     }
   }
 
+  void handleEmail(String email) {
+    _email = email;
+    _emailError.value = Validator.emailField(email);
+  }
+
+  void handlePassword(String password) {
+    _password = password;
+    _passwordError.value = Validator.requiredField(password);
+  }
+
   bool get isFormValid =>
       _emailError.value == null &&
       _passwordError.value == null &&
@@ -101,23 +96,11 @@ class LoginPresenter extends GetxController {
     });
   }
 
-  _validateEmail(String email) {
-    if (email == null) {
-      _emailError.value = null;
-      return;
-    }
-
-    if (email?.isEmpty == true) {
-      _emailError.value = UIError.requiredField;
-      return;
-    }
-
-    _emailError.value = email?.isEmail == true ? null : UIError.invalidEmail;
-  }
-
-  _validatePassword(String password) {
-    _passwordError.value =
-        password?.isEmpty == true ? UIError.requiredField : null;
+  @override
+  void onInit() {
+    super.onInit();
+    _handleNavigation();
+    _handleMainError();
   }
 
   @override

@@ -29,72 +29,27 @@ void main() {
     authentication = AutheticationMock();
     saveCurrentAccount = SaveCurrentAccountSpy();
     userSessionSpy = UserSessionSpy();
+
     sut = LoginPresenter(
         authetication: authentication,
         saveCurrentAccount: saveCurrentAccount,
         userSession: userSessionSpy);
+
     email = faker.internet.email();
     password = faker.internet.password();
   });
 
-  group('validateEmail', () {
-    test('Should emit requiredFieldError if email is empty', () {
-      const email = '';
-      sut.handleEmail(email);
-
-      expect(sut.emailError, UIError.requiredField);
-    });
-
-    test('Should emit null if email is null', () {
-      String email;
-      sut.handleEmail(email);
-
-      expect(sut.emailError, null);
-    });
-
-    test('Should emit invalidEmail if email is invalid', () {
-      String email = 'asdf';
-      sut.handleEmail(email);
-
-      expect(sut.emailError, UIError.invalidEmail);
-    });
-
-    test('Should emit null if validation succeeds', () {
-      String email = faker.internet.email();
-      sut.handleEmail(email);
-
-      expect(sut.emailError, null);
-    });
-  });
-
-  group('validatePassword', () {
-    test('Should emit requiredFieldError if password is empty', () {
-      const password = '';
-
-      sut.handlePassword(password);
-
-      expect(sut.passwordError, UIError.requiredField);
-    });
-
-    test('Should emit null if password is null', () {
-      String password;
-      sut.handlePassword(password);
-
-      expect(sut.passwordError, null);
-    });
-
-    test('Should emit null if has password', () {
-      String password = faker.internet.password();
-      sut.handlePassword(password);
-
-      expect(sut.passwordError, null);
-    });
-  });
-
-  group('validateForm', () {
-    test('Should emits false if any field is invalid', () {
+  group('isFormValid', () {
+    test('Should return false if email is invalid', () {
       const email = 'asd';
       sut.handleEmail(email);
+
+      expect(sut.isFormValid, false);
+    });
+
+    test('Should return false if password is null', () {
+      String password;
+      sut.handlePassword(password);
 
       expect(sut.isFormValid, false);
     });
