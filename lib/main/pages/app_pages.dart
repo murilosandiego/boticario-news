@@ -1,6 +1,7 @@
+import 'package:boticario_news/ui/pages/feed/feed_page_cubit.dart';
 import 'package:get/get.dart';
 
-import '../../ui/pages/feed/feed_page.dart';
+// import '../../ui/pages/feed/feed_page.dart';
 import '../../ui/pages/login/login_page.dart';
 import '../../ui/pages/new_post/new_post_page.dart';
 import '../../ui/pages/signup/signup_page.dart';
@@ -41,9 +42,14 @@ abstract class AppPages {
       binding: SignupBinding(),
       transition: Transition.downToUp,
     ),
+    // GetPage(
+    //   name: feed,
+    //   page: () => FeedPage(),
+    //   binding: FeedBinding(),
+    // ),
     GetPage(
       name: feed,
-      page: () => FeedPage(),
+      page: () => FeedPageCubit(),
       binding: FeedBinding(),
     ),
     GetPage(

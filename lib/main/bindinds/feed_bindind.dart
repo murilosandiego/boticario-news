@@ -1,3 +1,4 @@
+import 'package:boticario_news/ui/pages/feed/cubit/feed_cubit.dart';
 import 'package:get/get.dart';
 import 'package:localstorage/localstorage.dart';
 
@@ -40,6 +41,16 @@ class FeedBinding implements Bindings {
     );
     Get.lazyPut(
       () => FeedPresenter(
+        loadNews: Get.find(),
+        loadPosts: Get.find(),
+        savePost: Get.find(),
+        removePost: Get.find(),
+        userSession: Get.find(),
+        localStorage: Get.find<LocalStorage>(),
+      ),
+    );
+    Get.lazyPut(
+      () => FeedCubit(
         loadNews: Get.find(),
         loadPosts: Get.find(),
         savePost: Get.find(),
