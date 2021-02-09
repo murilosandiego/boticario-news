@@ -1,7 +1,9 @@
 import 'package:boticario_news/domain/entities/message_entity.dart';
 import 'package:boticario_news/domain/entities/post_entity.dart';
 import 'package:boticario_news/domain/entities/user_entity.dart';
+import 'package:boticario_news/ui/pages/feed/post_viewmodel.dart';
 import 'package:faker/faker.dart';
+import 'package:intl/intl.dart';
 
 const apiResponseNewsBoticario = """
 {
@@ -99,6 +101,19 @@ List<PostEntity> newsList = [
     ),
   ),
 ];
+
+final postsViewModel = newsList
+    .map(
+      (post) => NewsViewModel(
+        id: post?.id,
+        message: post?.message?.content,
+        date: DateFormat(DateFormat.YEAR_MONTH_DAY, 'pt_BR')
+            .format(post?.message?.createdAt),
+        user: post?.user?.name,
+        userId: post?.user?.id,
+      ),
+    )
+    .toList();
 
 const factoryApiResponse = """
 {
